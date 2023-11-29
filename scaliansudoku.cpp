@@ -1,83 +1,218 @@
 #include "scaliansudoku.h"
 #include "ui_scaliansudoku.h"
+#include <random>
 #include <QPixmap>
 #include <QDebug>
 
 ScalianSudoku::ScalianSudoku(QWidget *parent)
     : QMainWindow(parent)
     , ui(new Ui::ScalianSudoku)
-    , sudokuVacio{true}
+    , emptySudoku{true}
 {
     setWindowFlags(Qt::Window | Qt::WindowTitleHint | Qt::CustomizeWindowHint | Qt::WindowCloseButtonHint | Qt::WindowMinimizeButtonHint);
     ui->setupUi(this);
 
-    ui->FrameCeldas->setVisible(false);
+    ui->FrameCells->setVisible(false);
 
     ui->LogoScalian->setPixmap(QPixmap(":/logo/scalian"));
     ui->LogoCampus->setPixmap(QPixmap(":/logo/campus42"));
     ui->LogoCampus->setScaledContents(true);
 
     int itemIdx = 0;
-    uint filas = ui->Tablero->count();
-    for(uint filaId = 0; filaId < filas; filaId++)
+    uint rows = ui->Board->count();
+    for(uint rowId = 0; rowId < rows; rowId++)
     {
-        if(auto widget = ui->Tablero->itemAt(filaId)->widget())
+        if(auto widget = ui->Board->itemAt(rowId)->widget())
         {
             if(widget->objectName().contains("separator"))
             {
                 continue;
             }
         }
-        auto fila = ui->Tablero->itemAt(filaId)->layout();
-        uint celdas = fila->count();
-        for(uint celdaId = 0; celdaId < celdas; celdaId++)
+        auto row = ui->Board->itemAt(rowId)->layout();
+        uint cells = row->count();
+        for(uint cellId = 0; cellId < cells; cellId++)
         {
-            auto celda = dynamic_cast<QLabel*>(fila->itemAt(celdaId)->widget());
-            if(not celda)
+            auto cell = dynamic_cast<QLabel*>(row->itemAt(cellId)->widget());
+            if(not cell)
             {
                 continue;
             }
 
-            celda->setText("");
-            celda->setProperty("fila", itemIdx/9);
-            celda->setProperty("col", itemIdx%9);
-            celda->installEventFilter(this);
+            cell->setText("");
+            cell->setProperty("row", itemIdx/9);
+            cell->setProperty("col", itemIdx%9);
+            cell->installEventFilter(this);
             itemIdx++;
         }
     }
 
-    connect(ui->botonLimpiar, &QPushButton::clicked, this, &ScalianSudoku::onLimpiarSudoku);
-    connect(ui->botonResolver, &QPushButton::clicked, this, &ScalianSudoku::onResolverSudoku);
+    connect(ui->cleanButton, &QPushButton::clicked, this, &ScalianSudoku::onCleanSudoku);
+    connect(ui->solveButton, &QPushButton::clicked, this, &ScalianSudoku::onSolveSudoku);
 
-    connect(ui->Aceptar, &QPushButton::clicked, this, &ScalianSudoku::onAceptar);
-    connect(ui->Cancelar, &QPushButton::clicked, this, &ScalianSudoku::onCancelar);
-    connect(ui->Borrar, &QPushButton::clicked, this, &ScalianSudoku::onBorrar);
+    connect(ui->Accept, &QPushButton::clicked, this, &ScalianSudoku::onAccept);
+    connect(ui->Cancel, &QPushButton::clicked, this, &ScalianSudoku::onCancel);
+    connect(ui->Delete, &QPushButton::clicked, this, &ScalianSudoku::onDelete);
+    // Fill the board with initial values
+    setInitialSudoku();
 }
 
-void ScalianSudoku::limpiarSudoku()
+void ScalianSudoku::cleanSudoku()
 {
     qDebug() << "Borrar Sudoku";
 }
 
-void ScalianSudoku::resolverSudoku()
+void ScalianSudoku::solveSudoku()
 {
-    qDebug() << "Resolver Sudoku";
+    // Solve the Sudoku
+    if (solveSudokuRecursive())
+    {
+        // If solution found, update UI
+        for (uint row = 0; row < 9; ++row)
+        {
+            for (uint col = 0; col < 9; ++col)
+            {
+                writeCell(sudokuBoard[row][col], row, col, Qt::black);
+            }
+        }
+    }
+    else
+    {
+        // Handle case where no solution found
+        writeResult("No solution found", QColor(Qt::GlobalColor::red));
+    }
 }
 
-bool ScalianSudoku::chequearSudoku()
+bool ScalianSudoku::solveSudokuRecursive()
 {
-    qDebug() << "Chequear Sudoku";
+    // Find empty cell
+    uint row, col;
+    return !findEmptyCell(row, col);
+
+    // Try filling the empty cell with numbers 1 to 9
+    for (int num = 1; num <= 9; ++num)
+    {
+        if (isValidMove(row, col, num))
+        {
+            // Fill the cell
+            sudokuBoard[row][col] = num;
+
+            // Recursively fill the rest of the board
+            if (solveSudokuRecursive())
+            {
+                return true;  // If solution found, true
+            }
+
+            // If the move does not lead to a solution, backtrack
+            sudokuBoard[row][col] = 0;
+        }
+    }
+
+    return false;  // No valid number found for the current cell
+}
+
+bool ScalianSudoku::findEmptyCell(uint& row, uint& col)
+{
+    for (row = 0; row < 9; ++row)
+    {
+        for (col = 0; col < 9; ++col)
+        {
+            if (sudokuBoard[row][col] == 0)
+            {
+                return true;  // Found an empty cell
+            }
+        }
+    }
+
+    return false;  // No empty cell found
+}
+
+bool ScalianSudoku::isValidMove(uint row, uint col, int num)
+{
+    // Check if the number is not already present in the current row and column
+    for (uint i = 0; i < 9; ++i)
+    {
+        if (sudokuBoard[row][i] == num || sudokuBoard[i][col] == num)
+        {
+            return false;  // Number already present in the row or column
+        }
+    }
+
+    // Check if the number is not present in the 3x3 subgrid
+    uint startRow = row - row % 3;
+    uint startCol = col - col % 3;
+    for (uint i = 0; i < 3; ++i)
+    {
+        for (uint j = 0; j < 3; ++j)
+        {
+            if (sudokuBoard[startRow + i][startCol + j] == num)
+            {
+                return false;  // Number already present in the subgrid
+            }
+        }
+    }
+
+    return true;  // The move is valid
+}
+
+
+bool ScalianSudoku::checkSudoku()
+{
+    qDebug() << "check Sudoku";
     return false;
 }
 
-void ScalianSudoku::setearCelda(uint filaId, uint colId, uint valor)
+void ScalianSudoku::setInitialSudoku()
 {
-    qDebug() << "Setear Celda ("<< filaId << "," << colId << "): " << valor;
+    std::vector<std::array<std::array<int, 9>, 9>> sudokuBoards = {
+        {{
+            {0, 9, 5, 0, 7, 1, 2, 3, 0},
+            {7, 2, 0, 0, 0, 0, 0, 0, 4},
+            {8, 0, 0, 5, 0, 0, 0, 0, 0},
+            {6, 0, 8, 0, 0, 0, 7, 0, 0},
+            {0, 0, 0, 0, 0, 6, 4, 0, 3},
+            {0, 0, 0, 0, 3, 9, 0, 0, 6},
+            {0, 8, 6, 0, 1, 0, 0, 0, 2},
+            {2, 0, 0, 0, 4, 3, 0, 0, 5},
+            {3, 4, 0, 0, 0, 0, 0, 0, 9}
+        }},
+        {{
+            {0, 2, 0, 5, 1, 9, 6, 0, 0},
+            {0, 0, 0, 0, 0, 2, 0, 0, 5},
+            {7, 0, 0, 4, 0, 0, 0, 0, 0},
+            {0, 3, 7, 0, 0, 0, 0, 0, 9},
+            {5, 0, 0, 0, 4, 0, 0, 0, 0},
+            {0, 0, 0, 0, 0, 0, 5, 3, 1},
+            {2, 0, 0, 0, 0, 0, 0, 0, 3},
+            {1, 0, 0, 0, 9, 6, 0, 0, 4},
+            {8, 7, 4, 0, 5, 0, 0, 0, 0}
+        }},
+    };
+
+    std::random_device rd;
+    std::mt19937 gen(rd());
+    std::uniform_int_distribution<> distr(0, sudokuBoards.size() - 1);
+    int randomIndex = distr(gen);
+
+    sudokuBoard = sudokuBoards[randomIndex];
+
 }
 
-void ScalianSudoku::borrarCelda(uint filaId, uint colId)
+void ScalianSudoku::setCell(uint rowId, uint colId, uint value)
 {
-    qDebug() << "Borrar Celda ("<< filaId << "," << colId << ")";
+    qDebug() << "Set Cell (" << rowId << "," << colId << "): " << value;
+
+    auto cell = getCell(rowId, colId);
+
+    if (cell.has_value())
+    {
+        cell.value()->setText(QString::number(value));
+    }
+}
+
+void ScalianSudoku::deleteCell(uint rowId, uint colId)
+{
+    qDebug() << "Delete Celda ("<< rowId << "," << colId << ")";
 }
 
 ScalianSudoku::~ScalianSudoku()
@@ -85,20 +220,20 @@ ScalianSudoku::~ScalianSudoku()
     delete ui;
 }
 
-void ScalianSudoku::onDobleClickEnCelda(uint filaId, uint colId)
+void ScalianSudoku::onDoubleClickInCell(uint rowId, uint colId)
 {
-    ui->FrameCeldas->setProperty("fila", filaId);
-    ui->FrameCeldas->setProperty("col", colId);
+    ui->FrameCells->setProperty("row", rowId);
+    ui->FrameCells->setProperty("col", colId);
 
-    ui->EtiquetaFila->setText(QString::number(filaId));
-    ui->EtiquetaColumna->setText(QString::number(colId));
-    ui->FrameCeldas->setVisible(true);
-    ui->FrameControles->setVisible(false);
+    ui->RowTag->setText(QString::number(rowId));
+    ui->ColTag->setText(QString::number(colId));
+    ui->FrameCells->setVisible(true);
+    ui->FrameControls->setVisible(false);
 }
 
-std::optional<QLabel*> ScalianSudoku::obtenerCelda(uint filaId, uint colId)
+std::optional<QLabel*> ScalianSudoku::getCell(uint rowId, uint colId)
 {
-    if(filaId > 9 || colId > 9)
+    if(rowId > 9 || colId > 9)
     {
         return std::nullopt;
     }
@@ -112,126 +247,126 @@ std::optional<QLabel*> ScalianSudoku::obtenerCelda(uint filaId, uint colId)
         colId += 1;
     }
 
-    if(filaId > 5)
+    if(rowId > 5)
     {
-        filaId += 2;
+        rowId += 2;
     }
-    else if(filaId > 2)
+    else if(rowId > 2)
     {
-        filaId += 1;
+        rowId += 1;
     }
 
-    auto fila = ui->Tablero->itemAt(filaId)->layout();
-    auto celda = dynamic_cast<QLabel*>(fila->itemAt(colId)->widget());
+    auto row = ui->Board->itemAt(rowId)->layout();
+    auto cell = dynamic_cast<QLabel*>(row->itemAt(colId)->widget());
 
-    if(not celda)
+    if(not cell)
     {
         return std::nullopt;
     }
 
-    return celda;
+    return cell;
 }
 
-bool ScalianSudoku::limpiarCelda(uint filaId, uint colId)
+bool ScalianSudoku::cleanCell(uint rowId, uint colId)
 {
-    auto celda = obtenerCelda(filaId, colId);
-    if(celda.has_value())
+    auto cell = getCell(rowId, colId);
+    if(cell.has_value())
     {
         QColor color(Qt::GlobalColor::black);
-        celda.value()->setStyleSheet(QString("QLabel { color : rgb(%1,%2,%3); }").arg(color.red()).arg(color.green()).arg(color.blue()));
-        celda.value()->setText("");
+        cell.value()->setStyleSheet(QString("QLabel { color : rgb(%1,%2,%3); }").arg(color.red()).arg(color.green()).arg(color.blue()));
+        cell.value()->setText("");
         return true;
     }
 
     return false;
 }
 
-bool ScalianSudoku::escribirCelda(uint valor, uint filaId, uint colId, QColor color)
+bool ScalianSudoku::writeCell(uint valor, uint rowId, uint colId, QColor color)
 {
-    auto celda = obtenerCelda(filaId, colId);
-    if(celda.has_value() && valor < 10)
+    auto cell = getCell(rowId, colId);
+    if(cell.has_value() && valor < 10)
     {
-        celda.value()->setStyleSheet(QString("QLabel { color : rgb(%1,%2,%3); }").arg(color.red()).arg(color.green()).arg(color.blue()));
-        celda.value()->setText(QString::number(valor));
+        cell.value()->setStyleSheet(QString("QLabel { color : rgb(%1,%2,%3); }").arg(color.red()).arg(color.green()).arg(color.blue()));
+        cell.value()->setText(QString::number(valor));
         return true;
     }
 
     return false;
 }
 
-void ScalianSudoku::escribirResultado(const std::string &resultado, QColor color)
+void ScalianSudoku::writeResult(const std::string &result, QColor color)
 {
-    ui->EtiquetaResultado->setStyleSheet(QString("QLabel { color : rgb(%1,%2,%3); }").arg(color.red()).arg(color.green()).arg(color.blue()));
-    ui->EtiquetaResultado->setText(resultado.c_str());
+    ui->ResultTag->setText(result.c_str());
+    ui->ResultTag->setStyleSheet(QString("QLabel { color : rgb(%1,%2,%3); }").arg(color.red()).arg(color.green()).arg(color.blue()));
 }
 
-void ScalianSudoku::onLimpiarSudoku()
+void ScalianSudoku::onCleanSudoku()
 {
-    for(uint filaId = 0; filaId < 9; filaId++)
+    for(uint rowId = 0; rowId < 9; rowId++)
     {
         for(uint colId = 0; colId < 9; colId++)
         {
-            limpiarCelda(filaId, colId);
+            cleanCell(rowId, colId);
         }
     }
 
-    escribirResultado("");
-    limpiarSudoku();
+    writeResult("");
+    cleanSudoku();
 }
 
-void ScalianSudoku::onResolverSudoku()
+void ScalianSudoku::onSolveSudoku()
 {
-    resolverSudoku();
-    bool resultado = chequearSudoku();
+    solveSudoku();
+    bool result = checkSudoku();
 
-    if(resultado)
+    if(result)
     {
-        escribirResultado("Correcto", QColor(Qt::GlobalColor::green));
+        writeResult("Correct", QColor(Qt::GlobalColor::green));
     }
     else
     {
-        escribirResultado("Incorrecto", QColor(Qt::GlobalColor::red));
+        writeResult("Incorrect", QColor(Qt::GlobalColor::red));
     }
 }
 
-void ScalianSudoku::onAceptar()
+void ScalianSudoku::onAccept()
 {
-    uint fila = ui->FrameCeldas->property("fila").value<uint>();
-    uint col = ui->FrameCeldas->property("col").value<uint>();
-    uint valor = ui->ValorCelda->value();
-    ui->FrameCeldas->setVisible(false);
-    ui->FrameControles->setVisible(true);
-    setearCelda(fila, col, valor);
+    uint row = ui->FrameCells->property("row").value<uint>();
+    uint col = ui->FrameCells->property("col").value<uint>();
+    uint value = ui->CellValue->value();
+    ui->FrameCells->setVisible(false);
+    ui->FrameControls->setVisible(true);
+    setCell(row, col, value);
 }
 
-void ScalianSudoku::onCancelar()
+void ScalianSudoku::onCancel()
 {
-    ui->FrameCeldas->setVisible(false);
-    ui->FrameControles->setVisible(true);
+    ui->FrameCells->setVisible(false);
+    ui->FrameControls->setVisible(true);
 }
 
-void ScalianSudoku::onBorrar()
+void ScalianSudoku::onDelete()
 {
-    uint fila = ui->FrameCeldas->property("fila").value<uint>();
-    uint col = ui->FrameCeldas->property("col").value<uint>();
-    ui->FrameCeldas->setVisible(false);
-    ui->FrameControles->setVisible(true);
-    limpiarCelda(fila, col);
-    borrarCelda(fila, col);
+    uint row = ui->FrameCells->property("row").value<uint>();
+    uint col = ui->FrameCells->property("col").value<uint>();
+    ui->FrameCells->setVisible(false);
+    ui->FrameControls->setVisible(true);
+    cleanCell(row, col);
+    deleteCell(row, col);
 }
 
 bool ScalianSudoku::eventFilter(QObject *object, QEvent *event)
 {
     if(event->type() == QEvent::MouseButtonDblClick)
     {
-        if(sudokuVacio)
+        if(emptySudoku)
         {
-            auto coordinates = obtenerCoordenadas(object);
+            auto coordinates = getCoordinates(object);
             if(coordinates.has_value())
             {
-                uint fila = std::get<0>(coordinates.value());
+                uint row= std::get<0>(coordinates.value());
                 uint col = std::get<1>(coordinates.value());
-                onDobleClickEnCelda(fila, col);
+                onDoubleClickInCell(row, col);
             }
         }
         else
@@ -243,16 +378,16 @@ bool ScalianSudoku::eventFilter(QObject *object, QEvent *event)
     return QMainWindow::eventFilter(object, event);
 }
 
-std::optional<std::tuple<uint, uint>> ScalianSudoku::obtenerCoordenadas(QObject *object)
+std::optional<std::tuple<uint, uint>> ScalianSudoku::getCoordinates(QObject *object)
 {
     if(object)
     {
         auto label = dynamic_cast<QLabel*>(object);
         if(label)
         {
-            uint fila = object->property("fila").value<uint>();
+            uint row = object->property("row").value<uint>();
             uint col = object->property("col").value<uint>();
-            return std::tuple<int,int>{fila,col};
+            return std::tuple<int,int>{row,col};
         }
     }
 

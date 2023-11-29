@@ -112,7 +112,7 @@
        <number>0</number>
       </property>
       <item>
-       <widget class="QFrame" name="TableroFrame">
+       <widget class="QFrame" name="BoardFrame">
         <property name="minimumSize">
          <size>
           <width>500</width>
@@ -151,12 +151,12 @@
           <number>0</number>
          </property>
          <item>
-          <layout class="QVBoxLayout" name="Tablero">
+          <layout class="QVBoxLayout" name="Board">
            <property name="spacing">
             <number>0</number>
            </property>
            <item>
-            <layout class="QHBoxLayout" name="Fila1">
+            <layout class="QHBoxLayout" name="Row1">
              <property name="spacing">
               <number>0</number>
              </property>
@@ -411,7 +411,7 @@
             </layout>
            </item>
            <item>
-            <layout class="QHBoxLayout" name="Fila2">
+            <layout class="QHBoxLayout" name="Row2">
              <property name="spacing">
               <number>0</number>
              </property>
@@ -666,7 +666,7 @@
             </layout>
            </item>
            <item>
-            <layout class="QHBoxLayout" name="Fila3">
+            <layout class="QHBoxLayout" name="Row3">
              <property name="spacing">
               <number>0</number>
              </property>
@@ -943,7 +943,7 @@
             </widget>
            </item>
            <item>
-            <layout class="QHBoxLayout" name="Fila4">
+            <layout class="QHBoxLayout" name="Row4">
              <property name="spacing">
               <number>0</number>
              </property>
@@ -1198,7 +1198,7 @@
             </layout>
            </item>
            <item>
-            <layout class="QHBoxLayout" name="Fila5">
+            <layout class="QHBoxLayout" name="Row5">
              <property name="spacing">
               <number>0</number>
              </property>
@@ -1453,7 +1453,7 @@
             </layout>
            </item>
            <item>
-            <layout class="QHBoxLayout" name="Fila6">
+            <layout class="QHBoxLayout" name="Row6">
              <property name="spacing">
               <number>0</number>
              </property>
@@ -1730,7 +1730,7 @@
             </widget>
            </item>
            <item>
-            <layout class="QHBoxLayout" name="Fila7">
+            <layout class="QHBoxLayout" name="Row7">
              <property name="spacing">
               <number>0</number>
              </property>
@@ -1985,7 +1985,7 @@
             </layout>
            </item>
            <item>
-            <layout class="QHBoxLayout" name="Fila8">
+            <layout class="QHBoxLayout" name="Row8">
              <property name="spacing">
               <number>0</number>
              </property>
@@ -2240,7 +2240,7 @@
             </layout>
            </item>
            <item>
-            <layout class="QHBoxLayout" name="Fila9">
+            <layout class="QHBoxLayout" name="Row9">
              <property name="spacing">
               <number>0</number>
              </property>
@@ -2524,7 +2524,7 @@
           <number>10</number>
          </property>
          <item>
-          <widget class="QFrame" name="FrameControles">
+          <widget class="QFrame" name="FrameControls">
            <property name="maximumSize">
             <size>
              <width>160</width>
@@ -2559,7 +2559,7 @@ color: rgb(73, 36, 131);</string>
              </spacer>
             </item>
             <item>
-             <widget class="QPushButton" name="botonResolver">
+             <widget class="QPushButton" name="solveButton">
               <property name="styleSheet">
                <string notr="true">color: rgb(0, 0, 0);</string>
               </property>
@@ -2582,7 +2582,7 @@ color: rgb(73, 36, 131);</string>
              </spacer>
             </item>
             <item>
-             <widget class="QPushButton" name="botonLimpiar">
+             <widget class="QPushButton" name="cleanButton">
               <property name="styleSheet">
                <string notr="true">color: rgb(0, 0, 0);</string>
               </property>
@@ -2639,7 +2639,7 @@ color: rgb(73, 36, 131);</string>
                </widget>
               </item>
               <item>
-               <widget class="QLabel" name="EtiquetaResultado">
+               <widget class="QLabel" name="ResultTag">
                 <property name="font">
                  <font>
                   <pointsize>18</pointsize>
@@ -2679,7 +2679,7 @@ color: rgb(73, 36, 131);</string>
           </widget>
          </item>
          <item>
-          <widget class="QFrame" name="FrameCeldas">
+          <widget class="QFrame" name="FrameCells">
            <property name="maximumSize">
             <size>
              <width>160</width>
@@ -2729,7 +2729,7 @@ color: rgb(73, 36, 131);</string>
                </widget>
               </item>
               <item>
-               <widget class="QLabel" name="EtiquetaFila">
+               <widget class="QLabel" name="RowTag">
                 <property name="minimumSize">
                  <size>
                   <width>40</width>
@@ -2773,7 +2773,7 @@ color: rgb(73, 36, 131);</string>
                </widget>
               </item>
               <item>
-               <widget class="QLabel" name="EtiquetaColumna">
+               <widget class="QLabel" name="ColTag">
                 <property name="minimumSize">
                  <size>
                   <width>40</width>
@@ -2810,7 +2810,7 @@ color: rgb(73, 36, 131);</string>
                <number>10</number>
               </property>
               <item>
-               <widget class="QPushButton" name="Borrar">
+               <widget class="QPushButton" name="Delete">
                 <property name="styleSheet">
                  <string notr="true">color: rgb(0, 0, 0)</string>
                 </property>
@@ -2859,7 +2859,7 @@ color: rgb(73, 36, 131);</string>
                  </spacer>
                 </item>
                 <item>
-                 <widget class="QSpinBox" name="ValorCelda">
+                 <widget class="QSpinBox" name="CellValue">
                   <property name="font">
                    <font>
                     <pointsize>18</pointsize>
@@ -2896,7 +2896,7 @@ background-color: rgb(255, 255, 255);</string>
                </layout>
               </item>
               <item>
-               <widget class="QPushButton" name="Aceptar">
+               <widget class="QPushButton" name="Accept">
                 <property name="styleSheet">
                  <string notr="true">color: rgb(0, 0, 0)</string>
                 </property>
@@ -2906,7 +2906,7 @@ background-color: rgb(255, 255, 255);</string>
                </widget>
               </item>
               <item>
-               <widget class="QPushButton" name="Cancelar">
+               <widget class="QPushButton" name="Cancel">
                 <property name="styleSheet">
                  <string notr="true">color: rgb(0, 0, 0)</string>
                 </property>
