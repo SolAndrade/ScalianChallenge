@@ -14,9 +14,9 @@ ScalianSudoku::ScalianSudoku(QWidget *parent)
 
     ui->FrameCells->setVisible(false);
 
-    ui->LogoScalian->setPixmap(QPixmap(":/logo/scalian"));
-    ui->LogoCampus->setPixmap(QPixmap(":/logo/campus42"));
-    ui->LogoCampus->setScaledContents(true);
+    //ui->LogoScalian->setPixmap(QPixmap(":/logo/scalian"));
+    //ui->LogoCampus->setPixmap(QPixmap(":/logo/campus42"));
+    //ui->LogoCampus->setScaledContents(true);
 
     int itemIdx = 0;
     uint rows = ui->Board->count();
@@ -54,7 +54,7 @@ ScalianSudoku::ScalianSudoku(QWidget *parent)
     connect(ui->Cancel, &QPushButton::clicked, this, &ScalianSudoku::onCancel);
     connect(ui->Delete, &QPushButton::clicked, this, &ScalianSudoku::onDelete);
     // Fill the board with initial values
-    setInitialSudoku();
+    //setInitialSudoku();
 }
 
 void ScalianSudoku::cleanSudoku()
@@ -79,7 +79,7 @@ void ScalianSudoku::solveSudoku()
     else
     {
         // Handle case where no solution found
-        writeResult("No solution found", QColor(Qt::GlobalColor::red));
+        writeResult("IMPOSIBLE", QColor(Qt::GlobalColor::red));
     }
 }
 
@@ -87,7 +87,10 @@ bool ScalianSudoku::solveSudokuRecursive()
 {
     // Find empty cell
     uint row, col;
-    return !findEmptyCell(row, col);
+    if (!findEmptyCell(row, col))
+    {
+        return true;  // If no empty cell is found, the puzzle is solved
+    }
 
     // Try filling the empty cell with numbers 1 to 9
     for (int num = 1; num <= 9; ++num)
@@ -207,12 +210,31 @@ void ScalianSudoku::setCell(uint rowId, uint colId, uint value)
     if (cell.has_value())
     {
         cell.value()->setText(QString::number(value));
+        cell.value()->setStyleSheet(QString("QLabel { color : rgb(%1,%2,%3); background-color : rgb(%4,%5,%6); }")
+                                        .arg(darkBlue.red()).arg(darkBlue.green()).arg(darkBlue.blue())
+                                        .arg(lightBlue.red()).arg(lightBlue.green()).arg(lightBlue.blue()));
     }
+    sudokuBoard[rowId][colId] = value;
+    qDebug() << "sudokuboard cell (" << rowId << "," << colId << "): " << sudokuBoard[rowId][colId];
 }
 
 void ScalianSudoku::deleteCell(uint rowId, uint colId)
 {
-    qDebug() << "Delete Celda ("<< rowId << "," << colId << ")";
+    auto cell = getCell(rowId, colId);
+
+    if (cell.has_value())
+    {
+        // Clear the text in the QLabel
+        cell.value()->setText("");
+
+        sudokuBoard[rowId][colId] = 0;
+
+        if (cell.value()->text().isEmpty())
+        {
+            cell.value()->setStyleSheet(QString("background-color : rgb(%4,%5,%6); }")
+                                            .arg(lightBlue.red()).arg(lightBlue.green()).arg(lightBlue.blue()));
+        }
+    }
 }
 
 ScalianSudoku::~ScalianSudoku()
@@ -321,11 +343,11 @@ void ScalianSudoku::onSolveSudoku()
 
     if(result)
     {
-        writeResult("Correct", QColor(Qt::GlobalColor::green));
+        writeResult("CORRECTO", QColor(Qt::GlobalColor::green));
     }
     else
     {
-        writeResult("Incorrect", QColor(Qt::GlobalColor::red));
+        writeResult("INCORRECTO", QColor(Qt::GlobalColor::red));
     }
 }
 
@@ -334,8 +356,7 @@ void ScalianSudoku::onAccept()
     uint row = ui->FrameCells->property("row").value<uint>();
     uint col = ui->FrameCells->property("col").value<uint>();
     uint value = ui->CellValue->value();
-    ui->FrameCells->setVisible(false);
-    ui->FrameControls->setVisible(true);
+
     setCell(row, col, value);
 }
 
@@ -349,8 +370,6 @@ void ScalianSudoku::onDelete()
 {
     uint row = ui->FrameCells->property("row").value<uint>();
     uint col = ui->FrameCells->property("col").value<uint>();
-    ui->FrameCells->setVisible(false);
-    ui->FrameControls->setVisible(true);
     cleanCell(row, col);
     deleteCell(row, col);
 }

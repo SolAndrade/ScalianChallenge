@@ -29,8 +29,8 @@
    <property name="styleSheet">
     <string notr="true">background-color: rgb(255, 255, 255);</string>
    </property>
-   <layout class="QVBoxLayout" name="verticalLayout_2" stretch="1,2,0">
-    <item>
+   <layout class="QGridLayout" name="gridLayout">
+    <item row="0" column="0">
      <spacer name="verticalSpacer_2">
       <property name="orientation">
        <enum>Qt::Vertical</enum>
@@ -43,67 +43,7 @@
       </property>
      </spacer>
     </item>
-    <item>
-     <widget class="QFrame" name="Logos">
-      <property name="frameShape">
-       <enum>QFrame::NoFrame</enum>
-      </property>
-      <property name="frameShadow">
-       <enum>QFrame::Raised</enum>
-      </property>
-      <layout class="QHBoxLayout" name="horizontalLayout" stretch="1,4,1">
-       <property name="sizeConstraint">
-        <enum>QLayout::SetDefaultConstraint</enum>
-       </property>
-       <property name="leftMargin">
-        <number>0</number>
-       </property>
-       <property name="topMargin">
-        <number>0</number>
-       </property>
-       <property name="rightMargin">
-        <number>0</number>
-       </property>
-       <property name="bottomMargin">
-        <number>0</number>
-       </property>
-       <item>
-        <spacer name="horizontalSpacer">
-         <property name="orientation">
-          <enum>Qt::Horizontal</enum>
-         </property>
-         <property name="sizeHint" stdset="0">
-          <size>
-           <width>40</width>
-           <height>20</height>
-          </size>
-         </property>
-        </spacer>
-       </item>
-       <item>
-        <widget class="QLabel" name="LogoScalian">
-         <property name="text">
-          <string/>
-         </property>
-        </widget>
-       </item>
-       <item>
-        <spacer name="horizontalSpacer_2">
-         <property name="orientation">
-          <enum>Qt::Horizontal</enum>
-         </property>
-         <property name="sizeHint" stdset="0">
-          <size>
-           <width>40</width>
-           <height>20</height>
-          </size>
-         </property>
-        </spacer>
-       </item>
-      </layout>
-     </widget>
-    </item>
-    <item>
+    <item row="1" column="0">
      <layout class="QHBoxLayout" name="horizontalLayout_2" stretch="1,0">
       <property name="leftMargin">
        <number>0</number>
@@ -164,9 +104,13 @@
               <widget class="QLabel" name="C00">
                <property name="font">
                 <font>
-                 <pointsize>40</pointsize>
+                 <family>Inter</family>
+                 <pointsize>35</pointsize>
                  <bold>true</bold>
                 </font>
+               </property>
+               <property name="styleSheet">
+                <string notr="true">background-color: rgb(230, 237, 255);</string>
                </property>
                <property name="frameShape">
                 <enum>QFrame::Box</enum>
@@ -186,9 +130,13 @@
               <widget class="QLabel" name="C01">
                <property name="font">
                 <font>
-                 <pointsize>40</pointsize>
+                 <family>Inter</family>
+                 <pointsize>35</pointsize>
                  <bold>true</bold>
                 </font>
+               </property>
+               <property name="styleSheet">
+                <string notr="true">background-color: rgb(230, 237, 255);</string>
                </property>
                <property name="frameShape">
                 <enum>QFrame::Box</enum>
@@ -208,9 +156,13 @@
               <widget class="QLabel" name="C02">
                <property name="font">
                 <font>
-                 <pointsize>40</pointsize>
+                 <family>Inter</family>
+                 <pointsize>35</pointsize>
                  <bold>true</bold>
                 </font>
+               </property>
+               <property name="styleSheet">
+                <string notr="true">background-color: rgb(230, 237, 255);</string>
                </property>
                <property name="frameShape">
                 <enum>QFrame::Box</enum>
@@ -235,7 +187,7 @@
                 </size>
                </property>
                <property name="styleSheet">
-                <string notr="true">color: rgb(73, 36, 131);</string>
+                <string notr="true">color: rgb(255, 255, 255);</string>
                </property>
                <property name="frameShadow">
                 <enum>QFrame::Plain</enum>
@@ -255,9 +207,13 @@
               <widget class="QLabel" name="C03">
                <property name="font">
                 <font>
-                 <pointsize>40</pointsize>
+                 <family>Inter</family>
+                 <pointsize>35</pointsize>
                  <bold>true</bold>
                 </font>
+               </property>
+               <property name="styleSheet">
+                <string notr="true">background-color: rgb(230, 237, 255);</string>
                </property>
                <property name="frameShape">
                 <enum>QFrame::Box</enum>
@@ -277,9 +233,13 @@
               <widget class="QLabel" name="C04">
                <property name="font">
                 <font>
-                 <pointsize>40</pointsize>
+                 <family>Inter</family>
+                 <pointsize>35</pointsize>
                  <bold>true</bold>
                 </font>
+               </property>
+               <property name="styleSheet">
+                <string notr="true">background-color: rgb(230, 237, 255);</string>
                </property>
                <property name="frameShape">
                 <enum>QFrame::Box</enum>
@@ -299,9 +259,13 @@
               <widget class="QLabel" name="C05">
                <property name="font">
                 <font>
-                 <pointsize>40</pointsize>
+                 <family>Inter</family>
+                 <pointsize>35</pointsize>
                  <bold>true</bold>
                 </font>
+               </property>
+               <property name="styleSheet">
+                <string notr="true">background-color: rgb(230, 237, 255);</string>
                </property>
                <property name="frameShape">
                 <enum>QFrame::Box</enum>
@@ -326,7 +290,7 @@
                 </size>
                </property>
                <property name="styleSheet">
-                <string notr="true">color: rgb(73, 36, 131);</string>
+                <string notr="true">color: rgb(255, 255, 255);</string>
                </property>
                <property name="frameShadow">
                 <enum>QFrame::Plain</enum>
@@ -346,9 +310,13 @@
               <widget class="QLabel" name="C06">
                <property name="font">
                 <font>
-                 <pointsize>40</pointsize>
+                 <family>Inter</family>
+                 <pointsize>35</pointsize>
                  <bold>true</bold>
                 </font>
+               </property>
+               <property name="styleSheet">
+                <string notr="true">background-color: rgb(230, 237, 255);</string>
                </property>
                <property name="frameShape">
                 <enum>QFrame::Box</enum>
@@ -368,9 +336,13 @@
               <widget class="QLabel" name="C07">
                <property name="font">
                 <font>
-                 <pointsize>40</pointsize>
+                 <family>Inter</family>
+                 <pointsize>35</pointsize>
                  <bold>true</bold>
                 </font>
+               </property>
+               <property name="styleSheet">
+                <string notr="true">background-color: rgb(230, 237, 255);</string>
                </property>
                <property name="frameShape">
                 <enum>QFrame::Box</enum>
@@ -390,9 +362,13 @@
               <widget class="QLabel" name="C08">
                <property name="font">
                 <font>
-                 <pointsize>40</pointsize>
+                 <family>Inter</family>
+                 <pointsize>35</pointsize>
                  <bold>true</bold>
                 </font>
+               </property>
+               <property name="styleSheet">
+                <string notr="true">background-color: rgb(230, 237, 255);</string>
                </property>
                <property name="frameShape">
                 <enum>QFrame::Box</enum>
@@ -419,9 +395,13 @@
               <widget class="QLabel" name="C10">
                <property name="font">
                 <font>
-                 <pointsize>40</pointsize>
+                 <family>Inter</family>
+                 <pointsize>35</pointsize>
                  <bold>true</bold>
                 </font>
+               </property>
+               <property name="styleSheet">
+                <string notr="true">background-color: rgb(230, 237, 255);</string>
                </property>
                <property name="frameShape">
                 <enum>QFrame::Box</enum>
@@ -441,9 +421,13 @@
               <widget class="QLabel" name="C11">
                <property name="font">
                 <font>
-                 <pointsize>40</pointsize>
+                 <family>Inter</family>
+                 <pointsize>35</pointsize>
                  <bold>true</bold>
                 </font>
+               </property>
+               <property name="styleSheet">
+                <string notr="true">background-color: rgb(230, 237, 255);</string>
                </property>
                <property name="frameShape">
                 <enum>QFrame::Box</enum>
@@ -463,9 +447,13 @@
               <widget class="QLabel" name="C12">
                <property name="font">
                 <font>
-                 <pointsize>40</pointsize>
+                 <family>Inter</family>
+                 <pointsize>35</pointsize>
                  <bold>true</bold>
                 </font>
+               </property>
+               <property name="styleSheet">
+                <string notr="true">background-color: rgb(230, 237, 255);</string>
                </property>
                <property name="frameShape">
                 <enum>QFrame::Box</enum>
@@ -490,7 +478,7 @@
                 </size>
                </property>
                <property name="styleSheet">
-                <string notr="true">color: rgb(73, 36, 131);</string>
+                <string notr="true">color: rgb(255, 255, 255);</string>
                </property>
                <property name="frameShadow">
                 <enum>QFrame::Plain</enum>
@@ -510,9 +498,13 @@
               <widget class="QLabel" name="C13">
                <property name="font">
                 <font>
-                 <pointsize>40</pointsize>
+                 <family>Inter</family>
+                 <pointsize>35</pointsize>
                  <bold>true</bold>
                 </font>
+               </property>
+               <property name="styleSheet">
+                <string notr="true">background-color: rgb(230, 237, 255);</string>
                </property>
                <property name="frameShape">
                 <enum>QFrame::Box</enum>
@@ -532,9 +524,13 @@
               <widget class="QLabel" name="C14">
                <property name="font">
                 <font>
-                 <pointsize>40</pointsize>
+                 <family>Inter</family>
+                 <pointsize>35</pointsize>
                  <bold>true</bold>
                 </font>
+               </property>
+               <property name="styleSheet">
+                <string notr="true">background-color: rgb(230, 237, 255);</string>
                </property>
                <property name="frameShape">
                 <enum>QFrame::Box</enum>
@@ -554,9 +550,13 @@
               <widget class="QLabel" name="C15">
                <property name="font">
                 <font>
-                 <pointsize>40</pointsize>
+                 <family>Inter</family>
+                 <pointsize>35</pointsize>
                  <bold>true</bold>
                 </font>
+               </property>
+               <property name="styleSheet">
+                <string notr="true">background-color: rgb(230, 237, 255);</string>
                </property>
                <property name="frameShape">
                 <enum>QFrame::Box</enum>
@@ -581,7 +581,7 @@
                 </size>
                </property>
                <property name="styleSheet">
-                <string notr="true">color: rgb(73, 36, 131);</string>
+                <string notr="true">color: rgb(255, 255, 255);</string>
                </property>
                <property name="frameShadow">
                 <enum>QFrame::Plain</enum>
@@ -601,9 +601,13 @@
               <widget class="QLabel" name="C16">
                <property name="font">
                 <font>
-                 <pointsize>40</pointsize>
+                 <family>Inter</family>
+                 <pointsize>35</pointsize>
                  <bold>true</bold>
                 </font>
+               </property>
+               <property name="styleSheet">
+                <string notr="true">background-color: rgb(230, 237, 255);</string>
                </property>
                <property name="frameShape">
                 <enum>QFrame::Box</enum>
@@ -623,9 +627,13 @@
               <widget class="QLabel" name="C17">
                <property name="font">
                 <font>
-                 <pointsize>40</pointsize>
+                 <family>Inter</family>
+                 <pointsize>35</pointsize>
                  <bold>true</bold>
                 </font>
+               </property>
+               <property name="styleSheet">
+                <string notr="true">background-color: rgb(230, 237, 255);</string>
                </property>
                <property name="frameShape">
                 <enum>QFrame::Box</enum>
@@ -645,9 +653,13 @@
               <widget class="QLabel" name="C18">
                <property name="font">
                 <font>
-                 <pointsize>40</pointsize>
+                 <family>Inter</family>
+                 <pointsize>35</pointsize>
                  <bold>true</bold>
                 </font>
+               </property>
+               <property name="styleSheet">
+                <string notr="true">background-color: rgb(230, 237, 255);</string>
                </property>
                <property name="frameShape">
                 <enum>QFrame::Box</enum>
@@ -674,9 +686,13 @@
               <widget class="QLabel" name="C20">
                <property name="font">
                 <font>
-                 <pointsize>40</pointsize>
+                 <family>Inter</family>
+                 <pointsize>35</pointsize>
                  <bold>true</bold>
                 </font>
+               </property>
+               <property name="styleSheet">
+                <string notr="true">background-color: rgb(230, 237, 255);</string>
                </property>
                <property name="frameShape">
                 <enum>QFrame::Box</enum>
@@ -696,9 +712,13 @@
               <widget class="QLabel" name="C21">
                <property name="font">
                 <font>
-                 <pointsize>40</pointsize>
+                 <family>Inter</family>
+                 <pointsize>35</pointsize>
                  <bold>true</bold>
                 </font>
+               </property>
+               <property name="styleSheet">
+                <string notr="true">background-color: rgb(230, 237, 255);</string>
                </property>
                <property name="frameShape">
                 <enum>QFrame::Box</enum>
@@ -718,9 +738,13 @@
               <widget class="QLabel" name="C22">
                <property name="font">
                 <font>
-                 <pointsize>40</pointsize>
+                 <family>Inter</family>
+                 <pointsize>35</pointsize>
                  <bold>true</bold>
                 </font>
+               </property>
+               <property name="styleSheet">
+                <string notr="true">background-color: rgb(230, 237, 255);</string>
                </property>
                <property name="frameShape">
                 <enum>QFrame::Box</enum>
@@ -745,7 +769,7 @@
                 </size>
                </property>
                <property name="styleSheet">
-                <string notr="true">color: rgb(73, 36, 131);</string>
+                <string notr="true">color: rgb(255, 255, 255);</string>
                </property>
                <property name="frameShadow">
                 <enum>QFrame::Plain</enum>
@@ -765,9 +789,13 @@
               <widget class="QLabel" name="C23">
                <property name="font">
                 <font>
-                 <pointsize>40</pointsize>
+                 <family>Inter</family>
+                 <pointsize>35</pointsize>
                  <bold>true</bold>
                 </font>
+               </property>
+               <property name="styleSheet">
+                <string notr="true">background-color: rgb(230, 237, 255);</string>
                </property>
                <property name="frameShape">
                 <enum>QFrame::Box</enum>
@@ -787,9 +815,13 @@
               <widget class="QLabel" name="C24">
                <property name="font">
                 <font>
-                 <pointsize>40</pointsize>
+                 <family>Inter</family>
+                 <pointsize>35</pointsize>
                  <bold>true</bold>
                 </font>
+               </property>
+               <property name="styleSheet">
+                <string notr="true">background-color: rgb(230, 237, 255);</string>
                </property>
                <property name="frameShape">
                 <enum>QFrame::Box</enum>
@@ -809,9 +841,13 @@
               <widget class="QLabel" name="C25">
                <property name="font">
                 <font>
-                 <pointsize>40</pointsize>
+                 <family>Inter</family>
+                 <pointsize>35</pointsize>
                  <bold>true</bold>
                 </font>
+               </property>
+               <property name="styleSheet">
+                <string notr="true">background-color: rgb(230, 237, 255);</string>
                </property>
                <property name="frameShape">
                 <enum>QFrame::Box</enum>
@@ -836,7 +872,7 @@
                 </size>
                </property>
                <property name="styleSheet">
-                <string notr="true">color: rgb(73, 36, 131);</string>
+                <string notr="true">color: rgb(255, 255, 255);</string>
                </property>
                <property name="frameShadow">
                 <enum>QFrame::Plain</enum>
@@ -856,9 +892,13 @@
               <widget class="QLabel" name="C26">
                <property name="font">
                 <font>
-                 <pointsize>40</pointsize>
+                 <family>Inter</family>
+                 <pointsize>35</pointsize>
                  <bold>true</bold>
                 </font>
+               </property>
+               <property name="styleSheet">
+                <string notr="true">background-color: rgb(230, 237, 255);</string>
                </property>
                <property name="frameShape">
                 <enum>QFrame::Box</enum>
@@ -878,9 +918,13 @@
               <widget class="QLabel" name="C27">
                <property name="font">
                 <font>
-                 <pointsize>40</pointsize>
+                 <family>Inter</family>
+                 <pointsize>35</pointsize>
                  <bold>true</bold>
                 </font>
+               </property>
+               <property name="styleSheet">
+                <string notr="true">background-color: rgb(230, 237, 255);</string>
                </property>
                <property name="frameShape">
                 <enum>QFrame::Box</enum>
@@ -900,9 +944,13 @@
               <widget class="QLabel" name="C28">
                <property name="font">
                 <font>
-                 <pointsize>40</pointsize>
+                 <family>Inter</family>
+                 <pointsize>35</pointsize>
                  <bold>true</bold>
                 </font>
+               </property>
+               <property name="styleSheet">
+                <string notr="true">background-color: rgb(230, 237, 255);</string>
                </property>
                <property name="frameShape">
                 <enum>QFrame::Box</enum>
@@ -929,7 +977,7 @@
               </size>
              </property>
              <property name="styleSheet">
-              <string notr="true">color: rgb(73, 36, 131);</string>
+              <string notr="true">color: rgb(255, 255, 255);</string>
              </property>
              <property name="frameShadow">
               <enum>QFrame::Plain</enum>
@@ -951,9 +999,13 @@
               <widget class="QLabel" name="C30">
                <property name="font">
                 <font>
-                 <pointsize>40</pointsize>
+                 <family>Inter</family>
+                 <pointsize>35</pointsize>
                  <bold>true</bold>
                 </font>
+               </property>
+               <property name="styleSheet">
+                <string notr="true">background-color: rgb(230, 237, 255);</string>
                </property>
                <property name="frameShape">
                 <enum>QFrame::Box</enum>
@@ -973,9 +1025,13 @@
               <widget class="QLabel" name="C31">
                <property name="font">
                 <font>
-                 <pointsize>40</pointsize>
+                 <family>Inter</family>
+                 <pointsize>35</pointsize>
                  <bold>true</bold>
                 </font>
+               </property>
+               <property name="styleSheet">
+                <string notr="true">background-color: rgb(230, 237, 255);</string>
                </property>
                <property name="frameShape">
                 <enum>QFrame::Box</enum>
@@ -995,9 +1051,13 @@
               <widget class="QLabel" name="C32">
                <property name="font">
                 <font>
-                 <pointsize>40</pointsize>
+                 <family>Inter</family>
+                 <pointsize>35</pointsize>
                  <bold>true</bold>
                 </font>
+               </property>
+               <property name="styleSheet">
+                <string notr="true">background-color: rgb(230, 237, 255);</string>
                </property>
                <property name="frameShape">
                 <enum>QFrame::Box</enum>
@@ -1022,7 +1082,7 @@
                 </size>
                </property>
                <property name="styleSheet">
-                <string notr="true">color: rgb(73, 36, 131);</string>
+                <string notr="true">color: rgb(255, 255, 255);</string>
                </property>
                <property name="frameShadow">
                 <enum>QFrame::Plain</enum>
@@ -1042,9 +1102,13 @@
               <widget class="QLabel" name="C33">
                <property name="font">
                 <font>
-                 <pointsize>40</pointsize>
+                 <family>Inter</family>
+                 <pointsize>35</pointsize>
                  <bold>true</bold>
                 </font>
+               </property>
+               <property name="styleSheet">
+                <string notr="true">background-color: rgb(230, 237, 255);</string>
                </property>
                <property name="frameShape">
                 <enum>QFrame::Box</enum>
@@ -1064,9 +1128,13 @@
               <widget class="QLabel" name="C34">
                <property name="font">
                 <font>
-                 <pointsize>40</pointsize>
+                 <family>Inter</family>
+                 <pointsize>35</pointsize>
                  <bold>true</bold>
                 </font>
+               </property>
+               <property name="styleSheet">
+                <string notr="true">background-color: rgb(230, 237, 255);</string>
                </property>
                <property name="frameShape">
                 <enum>QFrame::Box</enum>
@@ -1086,9 +1154,13 @@
               <widget class="QLabel" name="C35">
                <property name="font">
                 <font>
-                 <pointsize>40</pointsize>
+                 <family>Inter</family>
+                 <pointsize>35</pointsize>
                  <bold>true</bold>
                 </font>
+               </property>
+               <property name="styleSheet">
+                <string notr="true">background-color: rgb(230, 237, 255);</string>
                </property>
                <property name="frameShape">
                 <enum>QFrame::Box</enum>
@@ -1113,7 +1185,7 @@
                 </size>
                </property>
                <property name="styleSheet">
-                <string notr="true">color: rgb(73, 36, 131);</string>
+                <string notr="true">color: rgb(255, 255, 255);</string>
                </property>
                <property name="frameShadow">
                 <enum>QFrame::Plain</enum>
@@ -1133,9 +1205,13 @@
               <widget class="QLabel" name="C36">
                <property name="font">
                 <font>
-                 <pointsize>40</pointsize>
+                 <family>Inter</family>
+                 <pointsize>35</pointsize>
                  <bold>true</bold>
                 </font>
+               </property>
+               <property name="styleSheet">
+                <string notr="true">background-color: rgb(230, 237, 255);</string>
                </property>
                <property name="frameShape">
                 <enum>QFrame::Box</enum>
@@ -1155,9 +1231,13 @@
               <widget class="QLabel" name="C37">
                <property name="font">
                 <font>
-                 <pointsize>40</pointsize>
+                 <family>Inter</family>
+                 <pointsize>35</pointsize>
                  <bold>true</bold>
                 </font>
+               </property>
+               <property name="styleSheet">
+                <string notr="true">background-color: rgb(230, 237, 255);</string>
                </property>
                <property name="frameShape">
                 <enum>QFrame::Box</enum>
@@ -1177,9 +1257,13 @@
               <widget class="QLabel" name="C38">
                <property name="font">
                 <font>
-                 <pointsize>40</pointsize>
+                 <family>Inter</family>
+                 <pointsize>35</pointsize>
                  <bold>true</bold>
                 </font>
+               </property>
+               <property name="styleSheet">
+                <string notr="true">background-color: rgb(230, 237, 255);</string>
                </property>
                <property name="frameShape">
                 <enum>QFrame::Box</enum>
@@ -1206,9 +1290,13 @@
               <widget class="QLabel" name="C40">
                <property name="font">
                 <font>
-                 <pointsize>40</pointsize>
+                 <family>Inter</family>
+                 <pointsize>35</pointsize>
                  <bold>true</bold>
                 </font>
+               </property>
+               <property name="styleSheet">
+                <string notr="true">background-color: rgb(230, 237, 255);</string>
                </property>
                <property name="frameShape">
                 <enum>QFrame::Box</enum>
@@ -1228,9 +1316,13 @@
               <widget class="QLabel" name="C41">
                <property name="font">
                 <font>
-                 <pointsize>40</pointsize>
+                 <family>Inter</family>
+                 <pointsize>35</pointsize>
                  <bold>true</bold>
                 </font>
+               </property>
+               <property name="styleSheet">
+                <string notr="true">background-color: rgb(230, 237, 255);</string>
                </property>
                <property name="frameShape">
                 <enum>QFrame::Box</enum>
@@ -1250,9 +1342,13 @@
               <widget class="QLabel" name="C42">
                <property name="font">
                 <font>
-                 <pointsize>40</pointsize>
+                 <family>Inter</family>
+                 <pointsize>35</pointsize>
                  <bold>true</bold>
                 </font>
+               </property>
+               <property name="styleSheet">
+                <string notr="true">background-color: rgb(230, 237, 255);</string>
                </property>
                <property name="frameShape">
                 <enum>QFrame::Box</enum>
@@ -1277,7 +1373,7 @@
                 </size>
                </property>
                <property name="styleSheet">
-                <string notr="true">color: rgb(73, 36, 131);</string>
+                <string notr="true">color: rgb(255, 255, 255);</string>
                </property>
                <property name="frameShadow">
                 <enum>QFrame::Plain</enum>
@@ -1297,9 +1393,13 @@
               <widget class="QLabel" name="C43">
                <property name="font">
                 <font>
-                 <pointsize>40</pointsize>
+                 <family>Inter</family>
+                 <pointsize>35</pointsize>
                  <bold>true</bold>
                 </font>
+               </property>
+               <property name="styleSheet">
+                <string notr="true">background-color: rgb(230, 237, 255);</string>
                </property>
                <property name="frameShape">
                 <enum>QFrame::Box</enum>
@@ -1319,9 +1419,13 @@
               <widget class="QLabel" name="C44">
                <property name="font">
                 <font>
-                 <pointsize>40</pointsize>
+                 <family>Inter</family>
+                 <pointsize>35</pointsize>
                  <bold>true</bold>
                 </font>
+               </property>
+               <property name="styleSheet">
+                <string notr="true">background-color: rgb(230, 237, 255);</string>
                </property>
                <property name="frameShape">
                 <enum>QFrame::Box</enum>
@@ -1341,9 +1445,13 @@
               <widget class="QLabel" name="C45">
                <property name="font">
                 <font>
-                 <pointsize>40</pointsize>
+                 <family>Inter</family>
+                 <pointsize>35</pointsize>
                  <bold>true</bold>
                 </font>
+               </property>
+               <property name="styleSheet">
+                <string notr="true">background-color: rgb(230, 237, 255);</string>
                </property>
                <property name="frameShape">
                 <enum>QFrame::Box</enum>
@@ -1368,7 +1476,7 @@
                 </size>
                </property>
                <property name="styleSheet">
-                <string notr="true">color: rgb(73, 36, 131);</string>
+                <string notr="true">color: rgb(255, 255, 255);</string>
                </property>
                <property name="frameShadow">
                 <enum>QFrame::Plain</enum>
@@ -1388,9 +1496,13 @@
               <widget class="QLabel" name="C46">
                <property name="font">
                 <font>
-                 <pointsize>40</pointsize>
+                 <family>Inter</family>
+                 <pointsize>35</pointsize>
                  <bold>true</bold>
                 </font>
+               </property>
+               <property name="styleSheet">
+                <string notr="true">background-color: rgb(230, 237, 255);</string>
                </property>
                <property name="frameShape">
                 <enum>QFrame::Box</enum>
@@ -1410,9 +1522,13 @@
               <widget class="QLabel" name="C47">
                <property name="font">
                 <font>
-                 <pointsize>40</pointsize>
+                 <family>Inter</family>
+                 <pointsize>35</pointsize>
                  <bold>true</bold>
                 </font>
+               </property>
+               <property name="styleSheet">
+                <string notr="true">background-color: rgb(230, 237, 255);</string>
                </property>
                <property name="frameShape">
                 <enum>QFrame::Box</enum>
@@ -1432,9 +1548,13 @@
               <widget class="QLabel" name="C48">
                <property name="font">
                 <font>
-                 <pointsize>40</pointsize>
+                 <family>Inter</family>
+                 <pointsize>35</pointsize>
                  <bold>true</bold>
                 </font>
+               </property>
+               <property name="styleSheet">
+                <string notr="true">background-color: rgb(230, 237, 255);</string>
                </property>
                <property name="frameShape">
                 <enum>QFrame::Box</enum>
@@ -1461,9 +1581,13 @@
               <widget class="QLabel" name="C50">
                <property name="font">
                 <font>
-                 <pointsize>40</pointsize>
+                 <family>Inter</family>
+                 <pointsize>35</pointsize>
                  <bold>true</bold>
                 </font>
+               </property>
+               <property name="styleSheet">
+                <string notr="true">background-color: rgb(230, 237, 255);</string>
                </property>
                <property name="frameShape">
                 <enum>QFrame::Box</enum>
@@ -1483,9 +1607,13 @@
               <widget class="QLabel" name="C51">
                <property name="font">
                 <font>
-                 <pointsize>40</pointsize>
+                 <family>Inter</family>
+                 <pointsize>35</pointsize>
                  <bold>true</bold>
                 </font>
+               </property>
+               <property name="styleSheet">
+                <string notr="true">background-color: rgb(230, 237, 255);</string>
                </property>
                <property name="frameShape">
                 <enum>QFrame::Box</enum>
@@ -1505,9 +1633,13 @@
               <widget class="QLabel" name="C52">
                <property name="font">
                 <font>
-                 <pointsize>40</pointsize>
+                 <family>Inter</family>
+                 <pointsize>35</pointsize>
                  <bold>true</bold>
                 </font>
+               </property>
+               <property name="styleSheet">
+                <string notr="true">background-color: rgb(230, 237, 255);</string>
                </property>
                <property name="frameShape">
                 <enum>QFrame::Box</enum>
@@ -1532,7 +1664,7 @@
                 </size>
                </property>
                <property name="styleSheet">
-                <string notr="true">color: rgb(73, 36, 131);</string>
+                <string notr="true">color: rgb(255, 255, 255);</string>
                </property>
                <property name="frameShadow">
                 <enum>QFrame::Plain</enum>
@@ -1552,9 +1684,13 @@
               <widget class="QLabel" name="C53">
                <property name="font">
                 <font>
-                 <pointsize>40</pointsize>
+                 <family>Inter</family>
+                 <pointsize>35</pointsize>
                  <bold>true</bold>
                 </font>
+               </property>
+               <property name="styleSheet">
+                <string notr="true">background-color: rgb(230, 237, 255);</string>
                </property>
                <property name="frameShape">
                 <enum>QFrame::Box</enum>
@@ -1574,9 +1710,13 @@
               <widget class="QLabel" name="C54">
                <property name="font">
                 <font>
-                 <pointsize>40</pointsize>
+                 <family>Inter</family>
+                 <pointsize>35</pointsize>
                  <bold>true</bold>
                 </font>
+               </property>
+               <property name="styleSheet">
+                <string notr="true">background-color: rgb(230, 237, 255);</string>
                </property>
                <property name="frameShape">
                 <enum>QFrame::Box</enum>
@@ -1596,9 +1736,13 @@
               <widget class="QLabel" name="C55">
                <property name="font">
                 <font>
-                 <pointsize>40</pointsize>
+                 <family>Inter</family>
+                 <pointsize>35</pointsize>
                  <bold>true</bold>
                 </font>
+               </property>
+               <property name="styleSheet">
+                <string notr="true">background-color: rgb(230, 237, 255);</string>
                </property>
                <property name="frameShape">
                 <enum>QFrame::Box</enum>
@@ -1623,7 +1767,7 @@
                 </size>
                </property>
                <property name="styleSheet">
-                <string notr="true">color: rgb(73, 36, 131);</string>
+                <string notr="true">color: rgb(255, 255, 255);</string>
                </property>
                <property name="frameShadow">
                 <enum>QFrame::Plain</enum>
@@ -1643,9 +1787,13 @@
               <widget class="QLabel" name="C56">
                <property name="font">
                 <font>
-                 <pointsize>40</pointsize>
+                 <family>Inter</family>
+                 <pointsize>35</pointsize>
                  <bold>true</bold>
                 </font>
+               </property>
+               <property name="styleSheet">
+                <string notr="true">background-color: rgb(230, 237, 255);</string>
                </property>
                <property name="frameShape">
                 <enum>QFrame::Box</enum>
@@ -1665,9 +1813,13 @@
               <widget class="QLabel" name="C57">
                <property name="font">
                 <font>
-                 <pointsize>40</pointsize>
+                 <family>Inter</family>
+                 <pointsize>35</pointsize>
                  <bold>true</bold>
                 </font>
+               </property>
+               <property name="styleSheet">
+                <string notr="true">background-color: rgb(230, 237, 255);</string>
                </property>
                <property name="frameShape">
                 <enum>QFrame::Box</enum>
@@ -1687,9 +1839,13 @@
               <widget class="QLabel" name="C58">
                <property name="font">
                 <font>
-                 <pointsize>40</pointsize>
+                 <family>Inter</family>
+                 <pointsize>35</pointsize>
                  <bold>true</bold>
                 </font>
+               </property>
+               <property name="styleSheet">
+                <string notr="true">background-color: rgb(230, 237, 255);</string>
                </property>
                <property name="frameShape">
                 <enum>QFrame::Box</enum>
@@ -1716,7 +1872,7 @@
               </size>
              </property>
              <property name="styleSheet">
-              <string notr="true">color: rgb(73, 36, 131);</string>
+              <string notr="true">color: rgb(255, 255, 255);</string>
              </property>
              <property name="frameShadow">
               <enum>QFrame::Plain</enum>
@@ -1738,9 +1894,13 @@
               <widget class="QLabel" name="C60">
                <property name="font">
                 <font>
-                 <pointsize>40</pointsize>
+                 <family>Inter</family>
+                 <pointsize>35</pointsize>
                  <bold>true</bold>
                 </font>
+               </property>
+               <property name="styleSheet">
+                <string notr="true">background-color: rgb(230, 237, 255);</string>
                </property>
                <property name="frameShape">
                 <enum>QFrame::Box</enum>
@@ -1760,9 +1920,13 @@
               <widget class="QLabel" name="C61">
                <property name="font">
                 <font>
-                 <pointsize>40</pointsize>
+                 <family>Inter</family>
+                 <pointsize>35</pointsize>
                  <bold>true</bold>
                 </font>
+               </property>
+               <property name="styleSheet">
+                <string notr="true">background-color: rgb(230, 237, 255);</string>
                </property>
                <property name="frameShape">
                 <enum>QFrame::Box</enum>
@@ -1782,9 +1946,13 @@
               <widget class="QLabel" name="C62">
                <property name="font">
                 <font>
-                 <pointsize>40</pointsize>
+                 <family>Inter</family>
+                 <pointsize>35</pointsize>
                  <bold>true</bold>
                 </font>
+               </property>
+               <property name="styleSheet">
+                <string notr="true">background-color: rgb(230, 237, 255);</string>
                </property>
                <property name="frameShape">
                 <enum>QFrame::Box</enum>
@@ -1809,7 +1977,7 @@
                 </size>
                </property>
                <property name="styleSheet">
-                <string notr="true">color: rgb(73, 36, 131);</string>
+                <string notr="true">color: rgb(255, 255, 255);</string>
                </property>
                <property name="frameShadow">
                 <enum>QFrame::Plain</enum>
@@ -1829,9 +1997,13 @@
               <widget class="QLabel" name="C63">
                <property name="font">
                 <font>
-                 <pointsize>40</pointsize>
+                 <family>Inter</family>
+                 <pointsize>35</pointsize>
                  <bold>true</bold>
                 </font>
+               </property>
+               <property name="styleSheet">
+                <string notr="true">background-color: rgb(230, 237, 255);</string>
                </property>
                <property name="frameShape">
                 <enum>QFrame::Box</enum>
@@ -1851,9 +2023,13 @@
               <widget class="QLabel" name="C64">
                <property name="font">
                 <font>
-                 <pointsize>40</pointsize>
+                 <family>Inter</family>
+                 <pointsize>35</pointsize>
                  <bold>true</bold>
                 </font>
+               </property>
+               <property name="styleSheet">
+                <string notr="true">background-color: rgb(230, 237, 255);</string>
                </property>
                <property name="frameShape">
                 <enum>QFrame::Box</enum>
@@ -1873,9 +2049,13 @@
               <widget class="QLabel" name="C65">
                <property name="font">
                 <font>
-                 <pointsize>40</pointsize>
+                 <family>Inter</family>
+                 <pointsize>35</pointsize>
                  <bold>true</bold>
                 </font>
+               </property>
+               <property name="styleSheet">
+                <string notr="true">background-color: rgb(230, 237, 255);</string>
                </property>
                <property name="frameShape">
                 <enum>QFrame::Box</enum>
@@ -1900,7 +2080,7 @@
                 </size>
                </property>
                <property name="styleSheet">
-                <string notr="true">color: rgb(73, 36, 131);</string>
+                <string notr="true">color: rgb(255, 255, 255);</string>
                </property>
                <property name="frameShadow">
                 <enum>QFrame::Plain</enum>
@@ -1920,9 +2100,13 @@
               <widget class="QLabel" name="C66">
                <property name="font">
                 <font>
-                 <pointsize>40</pointsize>
+                 <family>Inter</family>
+                 <pointsize>35</pointsize>
                  <bold>true</bold>
                 </font>
+               </property>
+               <property name="styleSheet">
+                <string notr="true">background-color: rgb(230, 237, 255);</string>
                </property>
                <property name="frameShape">
                 <enum>QFrame::Box</enum>
@@ -1942,9 +2126,13 @@
               <widget class="QLabel" name="C67">
                <property name="font">
                 <font>
-                 <pointsize>40</pointsize>
+                 <family>Inter</family>
+                 <pointsize>35</pointsize>
                  <bold>true</bold>
                 </font>
+               </property>
+               <property name="styleSheet">
+                <string notr="true">background-color: rgb(230, 237, 255);</string>
                </property>
                <property name="frameShape">
                 <enum>QFrame::Box</enum>
@@ -1964,9 +2152,13 @@
               <widget class="QLabel" name="C68">
                <property name="font">
                 <font>
-                 <pointsize>40</pointsize>
+                 <family>Inter</family>
+                 <pointsize>35</pointsize>
                  <bold>true</bold>
                 </font>
+               </property>
+               <property name="styleSheet">
+                <string notr="true">background-color: rgb(230, 237, 255);</string>
                </property>
                <property name="frameShape">
                 <enum>QFrame::Box</enum>
@@ -1993,9 +2185,13 @@
               <widget class="QLabel" name="C70">
                <property name="font">
                 <font>
-                 <pointsize>40</pointsize>
+                 <family>Inter</family>
+                 <pointsize>35</pointsize>
                  <bold>true</bold>
                 </font>
+               </property>
+               <property name="styleSheet">
+                <string notr="true">background-color: rgb(230, 237, 255);</string>
                </property>
                <property name="frameShape">
                 <enum>QFrame::Box</enum>
@@ -2015,9 +2211,13 @@
               <widget class="QLabel" name="C71">
                <property name="font">
                 <font>
-                 <pointsize>40</pointsize>
+                 <family>Inter</family>
+                 <pointsize>35</pointsize>
                  <bold>true</bold>
                 </font>
+               </property>
+               <property name="styleSheet">
+                <string notr="true">background-color: rgb(230, 237, 255);</string>
                </property>
                <property name="frameShape">
                 <enum>QFrame::Box</enum>
@@ -2037,9 +2237,13 @@
               <widget class="QLabel" name="C72">
                <property name="font">
                 <font>
-                 <pointsize>40</pointsize>
+                 <family>Inter</family>
+                 <pointsize>35</pointsize>
                  <bold>true</bold>
                 </font>
+               </property>
+               <property name="styleSheet">
+                <string notr="true">background-color: rgb(230, 237, 255);</string>
                </property>
                <property name="frameShape">
                 <enum>QFrame::Box</enum>
@@ -2064,7 +2268,7 @@
                 </size>
                </property>
                <property name="styleSheet">
-                <string notr="true">color: rgb(73, 36, 131);</string>
+                <string notr="true">color: rgb(255, 255, 255);</string>
                </property>
                <property name="frameShadow">
                 <enum>QFrame::Plain</enum>
@@ -2084,9 +2288,13 @@
               <widget class="QLabel" name="C73">
                <property name="font">
                 <font>
-                 <pointsize>40</pointsize>
+                 <family>Inter</family>
+                 <pointsize>35</pointsize>
                  <bold>true</bold>
                 </font>
+               </property>
+               <property name="styleSheet">
+                <string notr="true">background-color: rgb(230, 237, 255);</string>
                </property>
                <property name="frameShape">
                 <enum>QFrame::Box</enum>
@@ -2106,9 +2314,13 @@
               <widget class="QLabel" name="C74">
                <property name="font">
                 <font>
-                 <pointsize>40</pointsize>
+                 <family>Inter</family>
+                 <pointsize>35</pointsize>
                  <bold>true</bold>
                 </font>
+               </property>
+               <property name="styleSheet">
+                <string notr="true">background-color: rgb(230, 237, 255);</string>
                </property>
                <property name="frameShape">
                 <enum>QFrame::Box</enum>
@@ -2128,9 +2340,13 @@
               <widget class="QLabel" name="C75">
                <property name="font">
                 <font>
-                 <pointsize>40</pointsize>
+                 <family>Inter</family>
+                 <pointsize>35</pointsize>
                  <bold>true</bold>
                 </font>
+               </property>
+               <property name="styleSheet">
+                <string notr="true">background-color: rgb(230, 237, 255);</string>
                </property>
                <property name="frameShape">
                 <enum>QFrame::Box</enum>
@@ -2155,7 +2371,7 @@
                 </size>
                </property>
                <property name="styleSheet">
-                <string notr="true">color: rgb(73, 36, 131);</string>
+                <string notr="true">color: rgb(255, 255, 255);</string>
                </property>
                <property name="frameShadow">
                 <enum>QFrame::Plain</enum>
@@ -2175,9 +2391,13 @@
               <widget class="QLabel" name="C76">
                <property name="font">
                 <font>
-                 <pointsize>40</pointsize>
+                 <family>Inter</family>
+                 <pointsize>35</pointsize>
                  <bold>true</bold>
                 </font>
+               </property>
+               <property name="styleSheet">
+                <string notr="true">background-color: rgb(230, 237, 255);</string>
                </property>
                <property name="frameShape">
                 <enum>QFrame::Box</enum>
@@ -2197,9 +2417,13 @@
               <widget class="QLabel" name="C77">
                <property name="font">
                 <font>
-                 <pointsize>40</pointsize>
+                 <family>Inter</family>
+                 <pointsize>35</pointsize>
                  <bold>true</bold>
                 </font>
+               </property>
+               <property name="styleSheet">
+                <string notr="true">background-color: rgb(230, 237, 255);</string>
                </property>
                <property name="frameShape">
                 <enum>QFrame::Box</enum>
@@ -2219,9 +2443,13 @@
               <widget class="QLabel" name="C78">
                <property name="font">
                 <font>
-                 <pointsize>40</pointsize>
+                 <family>Inter</family>
+                 <pointsize>35</pointsize>
                  <bold>true</bold>
                 </font>
+               </property>
+               <property name="styleSheet">
+                <string notr="true">background-color: rgb(230, 237, 255);</string>
                </property>
                <property name="frameShape">
                 <enum>QFrame::Box</enum>
@@ -2248,9 +2476,13 @@
               <widget class="QLabel" name="C80">
                <property name="font">
                 <font>
-                 <pointsize>40</pointsize>
+                 <family>Inter</family>
+                 <pointsize>35</pointsize>
                  <bold>true</bold>
                 </font>
+               </property>
+               <property name="styleSheet">
+                <string notr="true">background-color: rgb(230, 237, 255);</string>
                </property>
                <property name="frameShape">
                 <enum>QFrame::Box</enum>
@@ -2270,9 +2502,13 @@
               <widget class="QLabel" name="C81">
                <property name="font">
                 <font>
-                 <pointsize>40</pointsize>
+                 <family>Inter</family>
+                 <pointsize>35</pointsize>
                  <bold>true</bold>
                 </font>
+               </property>
+               <property name="styleSheet">
+                <string notr="true">background-color: rgb(230, 237, 255);</string>
                </property>
                <property name="frameShape">
                 <enum>QFrame::Box</enum>
@@ -2292,9 +2528,13 @@
               <widget class="QLabel" name="C82">
                <property name="font">
                 <font>
-                 <pointsize>40</pointsize>
+                 <family>Inter</family>
+                 <pointsize>35</pointsize>
                  <bold>true</bold>
                 </font>
+               </property>
+               <property name="styleSheet">
+                <string notr="true">background-color: rgb(230, 237, 255);</string>
                </property>
                <property name="frameShape">
                 <enum>QFrame::Box</enum>
@@ -2319,7 +2559,7 @@
                 </size>
                </property>
                <property name="styleSheet">
-                <string notr="true">color: rgb(73, 36, 131);</string>
+                <string notr="true">color: rgb(255, 255, 255);</string>
                </property>
                <property name="frameShadow">
                 <enum>QFrame::Plain</enum>
@@ -2339,9 +2579,13 @@
               <widget class="QLabel" name="C83">
                <property name="font">
                 <font>
-                 <pointsize>40</pointsize>
+                 <family>Inter</family>
+                 <pointsize>35</pointsize>
                  <bold>true</bold>
                 </font>
+               </property>
+               <property name="styleSheet">
+                <string notr="true">background-color: rgb(230, 237, 255);</string>
                </property>
                <property name="frameShape">
                 <enum>QFrame::Box</enum>
@@ -2361,9 +2605,13 @@
               <widget class="QLabel" name="C84">
                <property name="font">
                 <font>
-                 <pointsize>40</pointsize>
+                 <family>Inter</family>
+                 <pointsize>35</pointsize>
                  <bold>true</bold>
                 </font>
+               </property>
+               <property name="styleSheet">
+                <string notr="true">background-color: rgb(230, 237, 255);</string>
                </property>
                <property name="frameShape">
                 <enum>QFrame::Box</enum>
@@ -2383,9 +2631,13 @@
               <widget class="QLabel" name="C85">
                <property name="font">
                 <font>
-                 <pointsize>40</pointsize>
+                 <family>Inter</family>
+                 <pointsize>35</pointsize>
                  <bold>true</bold>
                 </font>
+               </property>
+               <property name="styleSheet">
+                <string notr="true">background-color: rgb(230, 237, 255);</string>
                </property>
                <property name="frameShape">
                 <enum>QFrame::Box</enum>
@@ -2410,7 +2662,7 @@
                 </size>
                </property>
                <property name="styleSheet">
-                <string notr="true">color: rgb(73, 36, 131);</string>
+                <string notr="true">color: rgb(255, 255, 255);</string>
                </property>
                <property name="frameShadow">
                 <enum>QFrame::Plain</enum>
@@ -2430,9 +2682,13 @@
               <widget class="QLabel" name="C86">
                <property name="font">
                 <font>
-                 <pointsize>40</pointsize>
+                 <family>Inter</family>
+                 <pointsize>35</pointsize>
                  <bold>true</bold>
                 </font>
+               </property>
+               <property name="styleSheet">
+                <string notr="true">background-color: rgb(230, 237, 255);</string>
                </property>
                <property name="frameShape">
                 <enum>QFrame::Box</enum>
@@ -2452,9 +2708,13 @@
               <widget class="QLabel" name="C87">
                <property name="font">
                 <font>
-                 <pointsize>40</pointsize>
+                 <family>Inter</family>
+                 <pointsize>35</pointsize>
                  <bold>true</bold>
                 </font>
+               </property>
+               <property name="styleSheet">
+                <string notr="true">background-color: rgb(230, 237, 255);</string>
                </property>
                <property name="frameShape">
                 <enum>QFrame::Box</enum>
@@ -2474,9 +2734,13 @@
               <widget class="QLabel" name="C88">
                <property name="font">
                 <font>
-                 <pointsize>40</pointsize>
+                 <family>Inter</family>
+                 <pointsize>35</pointsize>
                  <bold>true</bold>
                 </font>
+               </property>
+               <property name="styleSheet">
+                <string notr="true">background-color: rgb(230, 237, 255);</string>
                </property>
                <property name="frameShape">
                 <enum>QFrame::Box</enum>
@@ -2503,16 +2767,28 @@
        <widget class="QFrame" name="verticalFrame_3">
         <property name="maximumSize">
          <size>
-          <width>160</width>
-          <height>16777215</height>
+          <width>175</width>
+          <height>700</height>
          </size>
+        </property>
+        <property name="font">
+         <font>
+          <family>Inter</family>
+          <bold>true</bold>
+         </font>
+        </property>
+        <property name="layoutDirection">
+         <enum>Qt::LeftToRight</enum>
+        </property>
+        <property name="styleSheet">
+         <string notr="true">background-color: rgb(64, 122, 255);</string>
         </property>
         <layout class="QVBoxLayout" name="verticalLayout_5" stretch="0,0,0,1">
          <property name="spacing">
-          <number>20</number>
+          <number>3</number>
          </property>
          <property name="leftMargin">
-          <number>10</number>
+          <number>7</number>
          </property>
          <property name="topMargin">
           <number>0</number>
@@ -2521,163 +2797,8 @@
           <number>0</number>
          </property>
          <property name="bottomMargin">
-          <number>10</number>
+          <number>0</number>
          </property>
-         <item>
-          <widget class="QFrame" name="FrameControls">
-           <property name="maximumSize">
-            <size>
-             <width>160</width>
-             <height>16777215</height>
-            </size>
-           </property>
-           <property name="styleSheet">
-            <string notr="true">background-color: rgb(234, 234, 234);
-color: rgb(73, 36, 131);</string>
-           </property>
-           <property name="frameShape">
-            <enum>QFrame::Box</enum>
-           </property>
-           <property name="frameShadow">
-            <enum>QFrame::Plain</enum>
-           </property>
-           <property name="lineWidth">
-            <number>2</number>
-           </property>
-           <layout class="QVBoxLayout" name="verticalLayout_3" stretch="0,0,0,0,0,0,0">
-            <item>
-             <spacer name="verticalSpacer_4">
-              <property name="orientation">
-               <enum>Qt::Vertical</enum>
-              </property>
-              <property name="sizeHint" stdset="0">
-               <size>
-                <width>119</width>
-                <height>25</height>
-               </size>
-              </property>
-             </spacer>
-            </item>
-            <item>
-             <widget class="QPushButton" name="solveButton">
-              <property name="styleSheet">
-               <string notr="true">color: rgb(0, 0, 0);</string>
-              </property>
-              <property name="text">
-               <string>Resolver Sudoku</string>
-              </property>
-             </widget>
-            </item>
-            <item>
-             <spacer name="verticalSpacer_5">
-              <property name="orientation">
-               <enum>Qt::Vertical</enum>
-              </property>
-              <property name="sizeHint" stdset="0">
-               <size>
-                <width>119</width>
-                <height>37</height>
-               </size>
-              </property>
-             </spacer>
-            </item>
-            <item>
-             <widget class="QPushButton" name="cleanButton">
-              <property name="styleSheet">
-               <string notr="true">color: rgb(0, 0, 0);</string>
-              </property>
-              <property name="text">
-               <string>Borrar Sudoku</string>
-              </property>
-             </widget>
-            </item>
-            <item>
-             <spacer name="verticalSpacer">
-              <property name="orientation">
-               <enum>Qt::Vertical</enum>
-              </property>
-              <property name="sizeHint" stdset="0">
-               <size>
-                <width>20</width>
-                <height>40</height>
-               </size>
-              </property>
-             </spacer>
-            </item>
-            <item>
-             <layout class="QVBoxLayout" name="verticalLayout_4">
-              <property name="spacing">
-               <number>0</number>
-              </property>
-              <item>
-               <widget class="QLabel" name="label">
-                <property name="font">
-                 <font>
-                  <pointsize>16</pointsize>
-                  <bold>true</bold>
-                 </font>
-                </property>
-                <property name="styleSheet">
-                 <string notr="true">color: rgb(0, 0, 0)</string>
-                </property>
-                <property name="text">
-                 <string>Resultado</string>
-                </property>
-                <property name="alignment">
-                 <set>Qt::AlignCenter</set>
-                </property>
-                <property name="margin">
-                 <number>2</number>
-                </property>
-               </widget>
-              </item>
-              <item>
-               <widget class="Line" name="line">
-                <property name="orientation">
-                 <enum>Qt::Horizontal</enum>
-                </property>
-               </widget>
-              </item>
-              <item>
-               <widget class="QLabel" name="ResultTag">
-                <property name="font">
-                 <font>
-                  <pointsize>18</pointsize>
-                  <bold>true</bold>
-                 </font>
-                </property>
-                <property name="styleSheet">
-                 <string notr="true">color: rgb(177, 1, 51);</string>
-                </property>
-                <property name="text">
-                 <string/>
-                </property>
-                <property name="alignment">
-                 <set>Qt::AlignCenter</set>
-                </property>
-                <property name="margin">
-                 <number>2</number>
-                </property>
-               </widget>
-              </item>
-             </layout>
-            </item>
-            <item>
-             <spacer name="verticalSpacer_3">
-              <property name="orientation">
-               <enum>Qt::Vertical</enum>
-              </property>
-              <property name="sizeHint" stdset="0">
-               <size>
-                <width>119</width>
-                <height>16</height>
-               </size>
-              </property>
-             </spacer>
-            </item>
-           </layout>
-          </widget>
-         </item>
          <item>
           <widget class="QFrame" name="FrameCells">
            <property name="maximumSize">
@@ -2687,8 +2808,8 @@ color: rgb(73, 36, 131);</string>
             </size>
            </property>
            <property name="styleSheet">
-            <string notr="true">background-color: rgb(234, 234, 234);
-color: rgb(73, 36, 131);</string>
+            <string notr="true">background-color: rgb(64, 122, 255);
+color: rgb(64, 122, 255);</string>
            </property>
            <property name="frameShape">
             <enum>QFrame::Box</enum>
@@ -2700,6 +2821,15 @@ color: rgb(73, 36, 131);</string>
             <number>2</number>
            </property>
            <layout class="QVBoxLayout" name="verticalLayout_6" stretch="0,0,0,0,0,0">
+            <property name="spacing">
+             <number>0</number>
+            </property>
+            <property name="topMargin">
+             <number>0</number>
+            </property>
+            <property name="bottomMargin">
+             <number>0</number>
+            </property>
             <item>
              <spacer name="verticalSpacer_8">
               <property name="orientation">
@@ -2718,13 +2848,23 @@ color: rgb(73, 36, 131);</string>
               <property name="topMargin">
                <number>0</number>
               </property>
+              <property name="bottomMargin">
+               <number>3</number>
+              </property>
               <item>
                <widget class="QLabel" name="label_4">
+                <property name="font">
+                 <font>
+                  <family>Inter</family>
+                  <pointsize>12</pointsize>
+                  <fontweight>Black</fontweight>
+                 </font>
+                </property>
                 <property name="styleSheet">
-                 <string notr="true">color: rgb(0, 0, 0)</string>
+                 <string notr="true">color: rgb(144, 177, 254)</string>
                 </property>
                 <property name="text">
-                 <string>Fila:</string>
+                 <string>FILA:</string>
                 </property>
                </widget>
               </item>
@@ -2732,23 +2872,28 @@ color: rgb(73, 36, 131);</string>
                <widget class="QLabel" name="RowTag">
                 <property name="minimumSize">
                  <size>
-                  <width>40</width>
+                  <width>12</width>
                   <height>0</height>
                  </size>
                 </property>
                 <property name="maximumSize">
                  <size>
-                  <width>40</width>
+                  <width>12</width>
                   <height>16777215</height>
                  </size>
                 </property>
                 <property name="font">
                  <font>
+                  <family>Inter</family>
+                  <pointsize>14</pointsize>
                   <bold>true</bold>
                  </font>
                 </property>
+                <property name="layoutDirection">
+                 <enum>Qt::RightToLeft</enum>
+                </property>
                 <property name="styleSheet">
-                 <string notr="true">color: rgb(0, 0, 0)</string>
+                 <string notr="true">color: rgb(230, 237, 255)</string>
                 </property>
                 <property name="text">
                  <string>0</string>
@@ -2764,11 +2909,18 @@ color: rgb(73, 36, 131);</string>
               </property>
               <item>
                <widget class="QLabel" name="label_6">
+                <property name="font">
+                 <font>
+                  <family>Inter</family>
+                  <pointsize>12</pointsize>
+                  <fontweight>Black</fontweight>
+                 </font>
+                </property>
                 <property name="styleSheet">
-                 <string notr="true">color: rgb(0, 0, 0)</string>
+                 <string notr="true">color: rgb(144, 177, 254)</string>
                 </property>
                 <property name="text">
-                 <string>Columna:</string>
+                 <string>COLUMNA:</string>
                 </property>
                </widget>
               </item>
@@ -2776,23 +2928,25 @@ color: rgb(73, 36, 131);</string>
                <widget class="QLabel" name="ColTag">
                 <property name="minimumSize">
                  <size>
-                  <width>40</width>
+                  <width>12</width>
                   <height>0</height>
                  </size>
                 </property>
                 <property name="maximumSize">
                  <size>
-                  <width>40</width>
+                  <width>12</width>
                   <height>16777215</height>
                  </size>
                 </property>
                 <property name="font">
                  <font>
+                  <family>Inter</family>
+                  <pointsize>14</pointsize>
                   <bold>true</bold>
                  </font>
                 </property>
                 <property name="styleSheet">
-                 <string notr="true">color: rgb(0, 0, 0)</string>
+                 <string notr="true">color: rgb(230, 237, 255)</string>
                 </property>
                 <property name="text">
                  <string>0</string>
@@ -2810,30 +2964,22 @@ color: rgb(73, 36, 131);</string>
                <number>10</number>
               </property>
               <item>
-               <widget class="QPushButton" name="Delete">
-                <property name="styleSheet">
-                 <string notr="true">color: rgb(0, 0, 0)</string>
-                </property>
-                <property name="text">
-                 <string>Borrar</string>
-                </property>
-               </widget>
-              </item>
-              <item>
                <widget class="QLabel" name="label_7">
                 <property name="font">
                  <font>
-                  <bold>true</bold>
+                  <family>Inter</family>
+                  <pointsize>12</pointsize>
+                  <fontweight>Black</fontweight>
                  </font>
                 </property>
                 <property name="styleSheet">
-                 <string notr="true">color: rgb(0, 0, 0)</string>
+                 <string notr="true">color: rgb(144, 177, 254)</string>
                 </property>
                 <property name="text">
-                 <string>Valor</string>
+                 <string>VALOR:</string>
                 </property>
                 <property name="alignment">
-                 <set>Qt::AlignCenter</set>
+                 <set>Qt::AlignLeading|Qt::AlignLeft|Qt::AlignVCenter</set>
                 </property>
                </widget>
               </item>
@@ -2896,22 +3042,56 @@ background-color: rgb(255, 255, 255);</string>
                </layout>
               </item>
               <item>
-               <widget class="QPushButton" name="Accept">
+               <widget class="QPushButton" name="Delete">
+                <property name="font">
+                 <font>
+                  <family>Inter</family>
+                  <pointsize>15</pointsize>
+                  <fontweight>Black</fontweight>
+                 </font>
+                </property>
                 <property name="styleSheet">
-                 <string notr="true">color: rgb(0, 0, 0)</string>
+                 <string notr="true">color: rgb(144, 177, 254);
+background-color: rgb(230, 237, 255);</string>
                 </property>
                 <property name="text">
-                 <string>Aceptar</string>
+                 <string>BORRAR</string>
+                </property>
+               </widget>
+              </item>
+              <item>
+               <widget class="QPushButton" name="Accept">
+                <property name="font">
+                 <font>
+                  <family>Inter</family>
+                  <pointsize>15</pointsize>
+                  <fontweight>Black</fontweight>
+                 </font>
+                </property>
+                <property name="styleSheet">
+                 <string notr="true">color: rgb(144, 177, 254);
+background-color: rgb(230, 237, 255);</string>
+                </property>
+                <property name="text">
+                 <string>ACEPTAR</string>
                 </property>
                </widget>
               </item>
               <item>
                <widget class="QPushButton" name="Cancel">
+                <property name="font">
+                 <font>
+                  <family>Inter</family>
+                  <pointsize>15</pointsize>
+                  <fontweight>Black</fontweight>
+                 </font>
+                </property>
                 <property name="styleSheet">
-                 <string notr="true">color: rgb(0, 0, 0)</string>
+                 <string notr="true">color: rgb(144, 177, 254);
+background-color: rgb(230, 237, 255);</string>
                 </property>
                 <property name="text">
-                 <string>Cancelar</string>
+                 <string>VOLVER</string>
                 </property>
                </widget>
               </item>
@@ -2960,6 +3140,183 @@ background-color: rgb(255, 255, 255);</string>
           </spacer>
          </item>
          <item>
+          <widget class="QFrame" name="FrameControls">
+           <property name="maximumSize">
+            <size>
+             <width>160</width>
+             <height>16777215</height>
+            </size>
+           </property>
+           <property name="styleSheet">
+            <string notr="true">color: rgb(64, 122, 255);
+background-color: rgb(64, 122, 255);</string>
+           </property>
+           <property name="frameShape">
+            <enum>QFrame::Box</enum>
+           </property>
+           <property name="frameShadow">
+            <enum>QFrame::Plain</enum>
+           </property>
+           <property name="lineWidth">
+            <number>2</number>
+           </property>
+           <layout class="QVBoxLayout" name="verticalLayout_3" stretch="0,0,0,0,0,0,0">
+            <property name="leftMargin">
+             <number>9</number>
+            </property>
+            <item>
+             <spacer name="verticalSpacer_4">
+              <property name="orientation">
+               <enum>Qt::Vertical</enum>
+              </property>
+              <property name="sizeHint" stdset="0">
+               <size>
+                <width>119</width>
+                <height>25</height>
+               </size>
+              </property>
+             </spacer>
+            </item>
+            <item>
+             <widget class="QPushButton" name="solveButton">
+              <property name="enabled">
+               <bool>true</bool>
+              </property>
+              <property name="font">
+               <font>
+                <family>Inter</family>
+                <pointsize>10</pointsize>
+                <fontweight>Black</fontweight>
+               </font>
+              </property>
+              <property name="styleSheet">
+               <string notr="true">background-color: rgb(144, 177, 254);
+color: rgb(230, 237, 255);</string>
+              </property>
+              <property name="text">
+               <string>RESOLVER SUDOKU</string>
+              </property>
+             </widget>
+            </item>
+            <item>
+             <spacer name="verticalSpacer_5">
+              <property name="orientation">
+               <enum>Qt::Vertical</enum>
+              </property>
+              <property name="sizeHint" stdset="0">
+               <size>
+                <width>119</width>
+                <height>37</height>
+               </size>
+              </property>
+             </spacer>
+            </item>
+            <item>
+             <widget class="QPushButton" name="cleanButton">
+              <property name="font">
+               <font>
+                <family>Inter</family>
+                <pointsize>10</pointsize>
+                <fontweight>Black</fontweight>
+               </font>
+              </property>
+              <property name="styleSheet">
+               <string notr="true">color: rgb(230, 237, 255);
+background-color: rgb(144, 177, 254);</string>
+              </property>
+              <property name="text">
+               <string>BORRAR SUDOKU</string>
+              </property>
+             </widget>
+            </item>
+            <item>
+             <spacer name="verticalSpacer">
+              <property name="orientation">
+               <enum>Qt::Vertical</enum>
+              </property>
+              <property name="sizeHint" stdset="0">
+               <size>
+                <width>20</width>
+                <height>40</height>
+               </size>
+              </property>
+             </spacer>
+            </item>
+            <item>
+             <layout class="QVBoxLayout" name="verticalLayout_4">
+              <property name="spacing">
+               <number>0</number>
+              </property>
+              <item>
+               <widget class="QLabel" name="label">
+                <property name="font">
+                 <font>
+                  <pointsize>16</pointsize>
+                  <bold>true</bold>
+                 </font>
+                </property>
+                <property name="styleSheet">
+                 <string notr="true">color: rgb(230, 237, 255);</string>
+                </property>
+                <property name="text">
+                 <string>RESULTADO</string>
+                </property>
+                <property name="alignment">
+                 <set>Qt::AlignCenter</set>
+                </property>
+                <property name="margin">
+                 <number>2</number>
+                </property>
+               </widget>
+              </item>
+              <item>
+               <widget class="QLabel" name="ResultTag">
+                <property name="font">
+                 <font>
+                  <pointsize>18</pointsize>
+                  <bold>true</bold>
+                 </font>
+                </property>
+                <property name="styleSheet">
+                 <string notr="true">color: rgb(177, 1, 51);</string>
+                </property>
+                <property name="text">
+                 <string/>
+                </property>
+                <property name="alignment">
+                 <set>Qt::AlignCenter</set>
+                </property>
+                <property name="margin">
+                 <number>2</number>
+                </property>
+               </widget>
+              </item>
+              <item>
+               <widget class="Line" name="line">
+                <property name="orientation">
+                 <enum>Qt::Horizontal</enum>
+                </property>
+               </widget>
+              </item>
+             </layout>
+            </item>
+            <item>
+             <spacer name="verticalSpacer_3">
+              <property name="orientation">
+               <enum>Qt::Vertical</enum>
+              </property>
+              <property name="sizeHint" stdset="0">
+               <size>
+                <width>119</width>
+                <height>16</height>
+               </size>
+              </property>
+             </spacer>
+            </item>
+           </layout>
+          </widget>
+         </item>
+         <item>
           <widget class="QLabel" name="LogoCampus">
            <property name="minimumSize">
             <size>
@@ -2984,6 +3341,39 @@ background-color: rgb(255, 255, 255);</string>
      </layout>
     </item>
    </layout>
+   <widget class="QFrame" name="Logos">
+    <property name="geometry">
+     <rect>
+      <x>9</x>
+      <y>15</y>
+      <width>16</width>
+      <height>16</height>
+     </rect>
+    </property>
+    <property name="frameShape">
+     <enum>QFrame::NoFrame</enum>
+    </property>
+    <property name="frameShadow">
+     <enum>QFrame::Raised</enum>
+    </property>
+    <layout class="QHBoxLayout" name="horizontalLayout">
+     <property name="sizeConstraint">
+      <enum>QLayout::SetDefaultConstraint</enum>
+     </property>
+     <property name="leftMargin">
+      <number>0</number>
+     </property>
+     <property name="topMargin">
+      <number>0</number>
+     </property>
+     <property name="rightMargin">
+      <number>0</number>
+     </property>
+     <property name="bottomMargin">
+      <number>0</number>
+     </property>
+    </layout>
+   </widget>
   </widget>
  </widget>
  <resources/>

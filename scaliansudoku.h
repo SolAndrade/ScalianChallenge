@@ -52,6 +52,8 @@ private:
     std::optional<std::tuple<uint, uint>> getCoordinates(QObject *object);
 
     std::array<std::array<int, 9>, 9> sudokuBoard;
+    QColor darkBlue{64, 122, 255};
+    QColor lightBlue{230, 237, 255};
 
     Ui::ScalianSudoku *ui;
     bool emptySudoku;
