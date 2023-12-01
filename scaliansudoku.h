@@ -2,7 +2,6 @@
 #define SCALIANSUDOKU_H
 
 #include <QMainWindow>
-
 #include <optional>
 #include <tuple>
 #include <QLabel>
@@ -23,13 +22,14 @@ public:
     virtual void solveSudoku();
     virtual void setInitialSudoku();
     virtual bool solveSudokuRecursive();
-    //virtual bool solveAdvancedStrategies(uint& row, uint& col);
-    //virtual bool isSingleOption(uint row, uint col, int& value);
     virtual bool findEmptyCell(uint& row, uint& col);
     virtual bool isValidMove(uint row, uint col, int num);
     virtual bool checkSudoku();
     virtual void setCell(uint rowId, uint colId, uint value, QColor color);
     virtual void deleteCell(uint rowId, uint colId);
+    virtual void writeResult(const std::string &result, QColor color = QColor(Qt::GlobalColor::black));
+    virtual void setEmptyBoard();
+    std::array<std::array<int, 9>, 9> sudokuBoard;
 
     ~ScalianSudoku();
 
@@ -39,8 +39,6 @@ protected:
     std::optional<QLabel*> getCell(uint rowId, uint colId);
 
     bool cleanCell(uint rowId, uint colId);
-    bool writeCell(uint value, uint rowId, uint colId, QColor color = QColor(Qt::GlobalColor::black));
-    void writeResult(const std::string &result, QColor color = QColor(Qt::GlobalColor::black));
 
     void onCleanSudoku();
     void onSolveSudoku();
@@ -48,12 +46,10 @@ protected:
     void onCancel();
     void onDelete();
 
-private:    
-
+private:
     bool eventFilter(QObject *object, QEvent *event) override;
     std::optional<std::tuple<uint, uint>> getCoordinates(QObject *object);
 
-    std::array<std::array<int, 9>, 9> sudokuBoard;
     QColor darkBlue{64, 122, 255};
     QColor lightBlue{230, 237, 255};
 

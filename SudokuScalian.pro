@@ -10,7 +10,9 @@ CONFIG += c++11
 
 SOURCES += \
     main.cpp \
-    scaliansudoku.cpp
+    scaliansudoku.cpp \
+    scaliansudokusolver.cpp \
+    scaliansudokutilities.cpp
 
 HEADERS += \
     scaliansudoku.h
