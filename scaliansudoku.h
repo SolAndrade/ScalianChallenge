@@ -23,10 +23,12 @@ public:
     virtual void solveSudoku();
     virtual void setInitialSudoku();
     virtual bool solveSudokuRecursive();
+    //virtual bool solveAdvancedStrategies(uint& row, uint& col);
+    //virtual bool isSingleOption(uint row, uint col, int& value);
     virtual bool findEmptyCell(uint& row, uint& col);
     virtual bool isValidMove(uint row, uint col, int num);
     virtual bool checkSudoku();
-    virtual void setCell(uint rowId, uint colId, uint value);
+    virtual void setCell(uint rowId, uint colId, uint value, QColor color);
     virtual void deleteCell(uint rowId, uint colId);
 
     ~ScalianSudoku();

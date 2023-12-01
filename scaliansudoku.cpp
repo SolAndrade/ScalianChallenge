@@ -54,33 +54,58 @@ ScalianSudoku::ScalianSudoku(QWidget *parent)
     connect(ui->Cancel, &QPushButton::clicked, this, &ScalianSudoku::onCancel);
     connect(ui->Delete, &QPushButton::clicked, this, &ScalianSudoku::onDelete);
     // Fill the board with initial values
-    //setInitialSudoku();
+    setInitialSudoku();
 }
 
 void ScalianSudoku::cleanSudoku()
 {
     qDebug() << "Borrar Sudoku";
+
+    // Iterate over all cells in sudokuBoard
+    for (uint rowId = 0; rowId < 9; ++rowId)
+    {
+        for (uint colId = 0; colId < 9; ++colId)
+        {
+            sudokuBoard[rowId][colId] = 0;  // Set cell value to 0
+
+            // Update UI to reflect the changes
+            auto cell = getCell(rowId, colId);
+            if (cell.has_value())
+            {
+                cell.value()->setText("");  // Clear text in QLabel
+                cell.value()->setStyleSheet(QString("background-color : rgb(%1,%2,%3);")
+                                                .arg(lightBlue.red()).arg(lightBlue.green()).arg(lightBlue.blue()));
+            }
+        }
+    }
 }
 
 void ScalianSudoku::solveSudoku()
 {
+    //setInitialSudoku();
+    // Solve the Sudoku
+    qDebug() << "Solving Sudoku...";
+    //setInitialSudoku();
     // Solve the Sudoku
     if (solveSudokuRecursive())
     {
+        qDebug() << "Solution found!";
         // If solution found, update UI
-        for (uint row = 0; row < 9; ++row)
+        /*for (uint row = 0; row < 9; ++row)
         {
             for (uint col = 0; col < 9; ++col)
             {
                 writeCell(sudokuBoard[row][col], row, col, Qt::black);
             }
-        }
+        }*/
     }
     else
     {
         // Handle case where no solution found
-        writeResult("IMPOSIBLE", QColor(Qt::GlobalColor::red));
+        qDebug() << "No solution found!";
+        writeResult("IMPOSSIBLE", QColor(Qt::GlobalColor::red));
     }
+    qDebug() << "Solving process complete.";
 }
 
 bool ScalianSudoku::solveSudokuRecursive()
@@ -93,12 +118,14 @@ bool ScalianSudoku::solveSudokuRecursive()
     }
 
     // Try filling the empty cell with numbers 1 to 9
+    //qDebug() << "empty cell to fill:(" << row << "," << col << "): ";
     for (int num = 1; num <= 9; ++num)
     {
         if (isValidMove(row, col, num))
         {
             // Fill the cell
             sudokuBoard[row][col] = num;
+            setCell(row, col, num, Qt::black);
 
             // Recursively fill the rest of the board
             if (solveSudokuRecursive())
@@ -109,6 +136,8 @@ bool ScalianSudoku::solveSudokuRecursive()
             // If the move does not lead to a solution, backtrack
             sudokuBoard[row][col] = 0;
         }
+        //qDebug() << "no valid move for(" << num << "): " << sudokuBoard[row][col];
+
     }
 
     return false;  // No valid number found for the current cell
@@ -122,6 +151,7 @@ bool ScalianSudoku::findEmptyCell(uint& row, uint& col)
         {
             if (sudokuBoard[row][col] == 0)
             {
+                //qDebug() << "next empty cell(" << row << "," << col << "): " << sudokuBoard[row][col];
                 return true;  // Found an empty cell
             }
         }
@@ -158,15 +188,50 @@ bool ScalianSudoku::isValidMove(uint row, uint col, int num)
     return true;  // The move is valid
 }
 
-
 bool ScalianSudoku::checkSudoku()
-{
-    qDebug() << "check Sudoku";
-    return false;
+{   
+    qDebug() << "Checking Sudoku...";
+
+    // Print the Sudoku board
+    qDebug() << "Sudoku Board:";
+    for (uint row = 0; row < 9; ++row)
+    {
+        QString rowString;
+        for (uint col = 0; col < 9; ++col)
+        {
+            rowString += QString::number(sudokuBoard[row][col]) + " ";
+        }
+        qDebug().noquote() << rowString.trimmed();
+    }
+    uint emptyRow, emptyCol;
+
+    // Check if there are any empty cells
+    if (findEmptyCell(emptyRow, emptyCol))
+    {
+        qDebug() << "Sudoku is incomplete. Found an empty cell at (" << emptyRow << "," << emptyCol << ")";
+        return false;
+    }
+
+    // Additional checks or logic can be added here if needed
+
+    qDebug() << "Sudoku is complete.";
+    return true;
 }
 
 void ScalianSudoku::setInitialSudoku()
 {
+
+    /*{{
+        {0, 0, 0, 0, 0, 0, 0, 0, 0},
+        {0, 0, 0, 0, 0, 0, 0, 0, 0},
+        {0, 0, 0, 0, 0, 0, 0, 0, 0},
+        {0, 0, 0, 0, 0, 0, 0, 0, 0},
+        {0, 0, 0, 0, 0, 0, 0, 0, 0},
+        {0, 0, 0, 0, 0, 0, 0, 0, 0},
+        {0, 0, 0, 0, 0, 0, 0, 0, 0},
+        {0, 0, 0, 0, 0, 0, 0, 0, 0},
+        {0, 0, 0, 0, 0, 0, 0, 0, 0}
+    }},*/
     std::vector<std::array<std::array<int, 9>, 9>> sudokuBoards = {
         {{
             {0, 9, 5, 0, 7, 1, 2, 3, 0},
@@ -190,18 +255,53 @@ void ScalianSudoku::setInitialSudoku()
             {1, 0, 0, 0, 9, 6, 0, 0, 4},
             {8, 7, 4, 0, 5, 0, 0, 0, 0}
         }},
+        {{
+            {0, 0, 0, 2, 3, 0, 0, 0, 0},
+            {0, 0, 2, 0, 8, 5, 0, 0, 0},
+            {0, 0, 0, 0, 0, 0, 7, 0, 4},
+            {0, 9, 0, 0, 6, 0, 0, 7, 3},
+            {0, 0, 0, 0, 0, 0, 4, 0, 0},
+            {4, 6, 0, 3, 5, 0, 0, 0, 0},
+            {0, 2, 0, 0, 0, 6, 0, 0, 7},
+            {0, 0, 1, 0, 9, 0, 2, 3, 0},
+            {0, 0, 0, 5, 0, 0, 0, 0, 0}
+        }},
+        {{
+            {0, 0, 0, 0, 0, 0, 5, 0, 0},
+            {9, 0, 0, 0, 0, 3, 0, 4, 7},
+            {4, 0, 0, 0, 0, 0, 0, 0, 6},
+            {0, 0, 6, 0, 7, 9, 0, 0, 4},
+            {0, 0, 0, 2, 0, 0, 0, 0, 0},
+            {0, 0, 8, 5, 0, 0, 7, 9, 0},
+            {0, 0, 9, 8, 1, 2, 0, 0, 3},
+            {0, 0, 0, 0, 5, 0, 0, 0, 0},
+            {0, 0, 3, 0, 0, 0, 4, 0, 0}
+        }},
+        {{
+            {0, 0, 0, 0, 0, 0, 0, 0, 0},
+            {0, 0, 0, 0, 0, 0, 0, 0, 0},
+            {0, 0, 0, 0, 0, 0, 0, 0, 0},
+            {0, 0, 0, 0, 0, 0, 0, 0, 0},
+            {0, 0, 0, 0, 0, 0, 0, 0, 0},
+            {0, 0, 0, 0, 0, 0, 0, 0, 0},
+            {0, 0, 0, 0, 0, 0, 0, 0, 0},
+            {0, 0, 0, 0, 0, 0, 0, 0, 0},
+            {0, 0, 0, 0, 0, 0, 0, 0, 0}
+        }},
     };
 
     std::random_device rd;
     std::mt19937 gen(rd());
     std::uniform_int_distribution<> distr(0, sudokuBoards.size() - 1);
-    int randomIndex = distr(gen);
+    //int randomIndex = distr(gen);
 
-    sudokuBoard = sudokuBoards[randomIndex];
+    sudokuBoard = sudokuBoards[4];
+    qDebug() << "input";
+    qDebug() << "sudokuboard cell (0,1): " << sudokuBoard[0][1];
 
 }
 
-void ScalianSudoku::setCell(uint rowId, uint colId, uint value)
+void ScalianSudoku::setCell(uint rowId, uint colId, uint value, QColor color)
 {
     qDebug() << "Set Cell (" << rowId << "," << colId << "): " << value;
 
@@ -211,7 +311,7 @@ void ScalianSudoku::setCell(uint rowId, uint colId, uint value)
     {
         cell.value()->setText(QString::number(value));
         cell.value()->setStyleSheet(QString("QLabel { color : rgb(%1,%2,%3); background-color : rgb(%4,%5,%6); }")
-                                        .arg(darkBlue.red()).arg(darkBlue.green()).arg(darkBlue.blue())
+                                        .arg(color.red()).arg(color.green()).arg(color.blue())
                                         .arg(lightBlue.red()).arg(lightBlue.green()).arg(lightBlue.blue()));
     }
     sudokuBoard[rowId][colId] = value;
@@ -234,6 +334,7 @@ void ScalianSudoku::deleteCell(uint rowId, uint colId)
             cell.value()->setStyleSheet(QString("background-color : rgb(%4,%5,%6); }")
                                             .arg(lightBlue.red()).arg(lightBlue.green()).arg(lightBlue.blue()));
         }
+        qDebug() << "sudokuboard cell (" << rowId << "," << colId << "): " << sudokuBoard[rowId][colId];
     }
 }
 
@@ -297,6 +398,7 @@ bool ScalianSudoku::cleanCell(uint rowId, uint colId)
         QColor color(Qt::GlobalColor::black);
         cell.value()->setStyleSheet(QString("QLabel { color : rgb(%1,%2,%3); }").arg(color.red()).arg(color.green()).arg(color.blue()));
         cell.value()->setText("");
+        sudokuBoard[rowId][colId] = 0;
         return true;
     }
 
@@ -308,7 +410,9 @@ bool ScalianSudoku::writeCell(uint valor, uint rowId, uint colId, QColor color)
     auto cell = getCell(rowId, colId);
     if(cell.has_value() && valor < 10)
     {
-        cell.value()->setStyleSheet(QString("QLabel { color : rgb(%1,%2,%3); }").arg(color.red()).arg(color.green()).arg(color.blue()));
+        cell.value()->setStyleSheet(QString("QLabel { color : rgb(%1,%2,%3); background-color : rgb(%4,%5,%6); }")
+                                        .arg(color.red()).arg(color.green()).arg(color.blue())
+                                        .arg(lightBlue.red()).arg(lightBlue.green()).arg(lightBlue.blue()));
         cell.value()->setText(QString::number(valor));
         return true;
     }
@@ -338,6 +442,7 @@ void ScalianSudoku::onCleanSudoku()
 
 void ScalianSudoku::onSolveSudoku()
 {
+
     solveSudoku();
     bool result = checkSudoku();
 
@@ -347,7 +452,7 @@ void ScalianSudoku::onSolveSudoku()
     }
     else
     {
-        writeResult("INCORRECTO", QColor(Qt::GlobalColor::red));
+        //solveSudoku();
     }
 }
 
@@ -357,7 +462,7 @@ void ScalianSudoku::onAccept()
     uint col = ui->FrameCells->property("col").value<uint>();
     uint value = ui->CellValue->value();
 
-    setCell(row, col, value);
+    setCell(row, col, value, darkBlue);
 }
 
 void ScalianSudoku::onCancel()
