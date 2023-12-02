@@ -1,7 +1,6 @@
 #include "scaliansudoku.h"
-
+#include <unordered_set>
 #include <random>
-
 
 bool ScalianSudoku::findEmptyCell(uint& row, uint& col)
 {
@@ -15,7 +14,6 @@ bool ScalianSudoku::findEmptyCell(uint& row, uint& col)
             }
         }
     }
-
     return false;  // No empty cell found
 }
 
@@ -60,8 +58,6 @@ bool ScalianSudoku::checkSudoku()
         return false;
     }
 
-    // Additional checks or logic can be added here if needed
-
     qDebug() << "Sudoku is complete.";
     return true;
 }
@@ -82,11 +78,20 @@ void ScalianSudoku::setEmptyBoard()
         }},
         };
     sudokuBoard = sudokuBoards[0];
+    for (uint row = 0; row < 9; ++row) {
+        for (uint col = 0; col < 9; ++col) {
+            std::optional<QLabel*> cell = getCell(row, col);
+
+            if (cell) {
+                deleteCell(row, col);
+            }
+        }
+    }
 }
 
 void ScalianSudoku::setInitialSudoku()
 {
-
+    setEmptyBoard();
     /*{{
         {0, 0, 0, 0, 0, 0, 0, 0, 0},
         {0, 0, 0, 0, 0, 0, 0, 0, 0},
@@ -151,4 +156,137 @@ void ScalianSudoku::setInitialSudoku()
     int randomIndex = distr(gen);
 
     sudokuBoard = sudokuBoards[randomIndex];
+    for (uint row = 0; row < 9; ++row) {
+        for (uint col = 0; col < 9; ++col) {
+            // Assuming getCell function returns the cell widget or structure
+            std::optional<QLabel*> cell = getCell(row, col);
+
+            if (cell && sudokuBoard[row][col] != 0) {
+                setCell(row, col, sudokuBoard[row][col], darkBlue);
+            }
+        }
+    }
+}
+
+bool ScalianSudoku::isValidBoard()
+{
+    // Check rows and columns
+    for (uint i = 0; i < 9; ++i)
+    {
+        std::unordered_set<int> rowSet;
+        std::unordered_set<int> colSet;
+
+        for (uint j = 0; j < 9; ++j)
+        {
+            // Check rows
+            if (rowSet.find(sudokuBoard[i][j]) != rowSet.end())
+                return false;
+            if (sudokuBoard[i][j] != 0)
+                rowSet.insert(sudokuBoard[i][j]);
+
+            // Check columns
+            if (colSet.find(sudokuBoard[j][i]) != colSet.end())
+                return false;
+            if (sudokuBoard[j][i] != 0)
+                colSet.insert(sudokuBoard[j][i]);
+        }
+    }
+
+    // Check regions
+    for (uint i = 0; i < 9; i += 3)
+    {
+        for (uint j = 0; j < 9; j += 3)
+        {
+            std::unordered_set<int> regionSet;
+
+            for (uint row = 0; row < 3; ++row)
+            {
+                for (uint col = 0; col < 3; ++col)
+                {
+                    int num = sudokuBoard[i + row][j + col];
+
+                    // Check regions
+                    if (regionSet.find(num) != regionSet.end())
+                        return false;
+                    if (num != 0)
+                        regionSet.insert(num);
+                }
+            }
+        }
+    }
+
+    return true;
+}
+
+void ScalianSudoku::setAllCellBg() {
+    for (uint row = 0; row < 9; ++row) {
+        for (uint col = 0; col < 9; ++col) {
+            std::optional<QLabel*> cell = getCell(row, col);
+
+            if (cell) {
+                if (sudokuBoard[row][col] != 0) {
+                    if (checkDuplicates(row, col, sudokuBoard[row][col])) {
+                        // If duplicates found, set the cell with darkRed color and mediumRed background
+                        cell.value()->setStyleSheet(QString("QLabel { color : rgb(%1,%2,%3); background-color : rgb(%4,%5,%6); }")
+                                                        .arg(darkRed.red()).arg(darkRed.green()).arg(darkRed.blue())
+                                                        .arg(mediumRed.red()).arg(mediumRed.green()).arg(mediumRed.blue()));
+                    } else {
+                        // If the cell is not empty and no duplicates, set color to darkBlue and background to lightBlue
+                        cell.value()->setStyleSheet(QString("QLabel { color : rgb(%1,%2,%3); background-color : rgb(%4,%5,%6); }")
+                                                        .arg(darkBlue.red()).arg(darkBlue.green()).arg(darkBlue.blue())
+                                                        .arg(lightBlue.red()).arg(lightBlue.green()).arg(lightBlue.blue()));
+                    }
+                } else {
+                    // If the cell is empty, set only the background color to lightBlue
+                    cell.value()->setStyleSheet(QString("QLabel { background-color : rgb(%1,%2,%3); }")
+                                                    .arg(lightBlue.red()).arg(lightBlue.green()).arg(lightBlue.blue()));
+                }
+            }
+        }
+    }
+}
+
+bool ScalianSudoku::checkDuplicates(uint row, uint col, uint value)
+{
+    // Check duplicates in row
+    for (uint i = 0; i < 9; ++i) {
+        if (i != col && sudokuBoard[row][i] == value) {
+            qDebug() << "Duplicate in row: (" << row << ", " << i << ")";
+            return true;
+        }
+    }
+
+    // Check duplicates in column
+    for (uint i = 0; i < 9; ++i) {
+        if (i != row && sudokuBoard[i][col] == value) {
+            qDebug() << "Duplicate in column: (" << i << ", " << col << ")";
+            return true;
+        }
+    }
+
+    // Check duplicates in region
+    uint startRow = 3 * (row / 3);
+    uint startCol = 3 * (col / 3);
+    for (uint i = startRow; i < startRow + 3; ++i) {
+        for (uint j = startCol; j < startCol + 3; ++j) {
+            if (i != row && j != col && sudokuBoard[i][j] == value) {
+                qDebug() << "Duplicate in region: (" << i << ", " << j << ")";
+                return true;
+            }
+        }
+    }
+
+    return false; // No duplicates found
+}
+
+void ScalianSudoku::printSudokuBoard()
+{
+    qDebug() << "Sudoku Board:";
+    for (uint row = 0; row < 9; ++row) {
+        QString rowString;
+        for (uint col = 0; col < 9; ++col) {
+            rowString += QString::number(sudokuBoard[row][col]) + " ";
+        }
+        qDebug() << rowString.trimmed();
+    }
 }

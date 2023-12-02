@@ -11,6 +11,7 @@ CONFIG += c++11
 SOURCES += \
     main.cpp \
     scaliansudoku.cpp \
+    scaliansudoku_ui.cpp \
     scaliansudokusolver.cpp \
     scaliansudokutilities.cpp
 

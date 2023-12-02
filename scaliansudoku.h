@@ -18,18 +18,40 @@ class ScalianSudoku : public QMainWindow
 public:
     ScalianSudoku(QWidget *parent = nullptr);
 
-    virtual void cleanSudoku();
+    // scaliansudokusolver.cpp
     virtual void solveSudoku();
-    virtual void setInitialSudoku();
     virtual bool solveSudokuRecursive();
+
+    //scaliansudokuutilities.cpp
+    virtual void setInitialSudoku();
     virtual bool findEmptyCell(uint& row, uint& col);
     virtual bool isValidMove(uint row, uint col, int num);
     virtual bool checkSudoku();
+    virtual bool isValidBoard();
+    virtual bool checkDuplicates(uint row, uint col, uint value);
+    virtual void onRandomValues();
+
+    //scaliansudoku_ui.cpp
+    virtual void setEmptyBoard();
+    virtual void setAllCellBg();
+    virtual void printSudokuBoard();
+
+    //scaliansudoku.cpp
+    virtual void cleanSudoku();
     virtual void setCell(uint rowId, uint colId, uint value, QColor color);
     virtual void deleteCell(uint rowId, uint colId);
     virtual void writeResult(const std::string &result, QColor color = QColor(Qt::GlobalColor::black));
-    virtual void setEmptyBoard();
+
+    // Sudoku Board Structure
     std::array<std::array<int, 9>, 9> sudokuBoard;
+
+    // COLORS
+    QColor darkBlue{64, 122, 255};
+    QColor lightBlue{230, 237, 255};
+    QColor mediumBlue{144, 177, 254};
+    QColor mediumLightBlue{212, 225, 255};
+    QColor darkRed{209, 35, 47};
+    QColor mediumRed{228, 98, 107};
 
     ~ScalianSudoku();
 
@@ -49,9 +71,6 @@ protected:
 private:
     bool eventFilter(QObject *object, QEvent *event) override;
     std::optional<std::tuple<uint, uint>> getCoordinates(QObject *object);
-
-    QColor darkBlue{64, 122, 255};
-    QColor lightBlue{230, 237, 255};
 
     Ui::ScalianSudoku *ui;
     bool emptySudoku;

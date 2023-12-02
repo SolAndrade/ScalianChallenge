@@ -2,10 +2,16 @@
 
 void ScalianSudoku::solveSudoku()
 {
-    //setInitialSudoku();
-    // Solve the Sudoku
+    // Check if the initial board is valid
+    if (!isValidBoard())
+    {
+        qDebug() << "Invalid initial board!";
+        writeResult("IMPOSSIBLE", QColor(Qt::GlobalColor::red));
+        return;
+    }
+
     qDebug() << "Solving Sudoku...";
-    //setInitialSudoku();
+
     // Solve the Sudoku
     if (solveSudokuRecursive())
     {
@@ -15,7 +21,17 @@ void ScalianSudoku::solveSudoku()
     {
         // Handle case where no solution found
         qDebug() << "No solution found!";
-        writeResult("IMPOSSIBLE", QColor(Qt::GlobalColor::red));
+        writeResult("IMPOSIBLE", QColor(Qt::GlobalColor::red));
+        return;
+    }
+    bool result = checkSudoku();
+    if(result)
+    {
+        writeResult("CORRECTO", QColor(Qt::GlobalColor::green));
+    }
+    else
+    {
+        writeResult("INCORRECTO", QColor(Qt::GlobalColor::yellow));
     }
     qDebug() << "Solving process complete.";
 }
@@ -30,7 +46,6 @@ bool ScalianSudoku::solveSudokuRecursive()
     }
 
     // Try filling the empty cell with numbers 1 to 9
-    //qDebug() << "empty cell to fill:(" << row << "," << col << "): ";
     for (int num = 1; num <= 9; ++num)
     {
         if (isValidMove(row, col, num))
@@ -48,9 +63,6 @@ bool ScalianSudoku::solveSudokuRecursive()
             // If the move does not lead to a solution, backtrack
             sudokuBoard[row][col] = 0;
         }
-        //qDebug() << "no valid move for(" << num << "): " << sudokuBoard[row][col];
-
     }
-
     return false;  // No valid number found for the current cell
 }

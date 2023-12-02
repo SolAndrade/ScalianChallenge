@@ -1,6 +1,5 @@
 #include "scaliansudoku.h"
 #include "ui_scaliansudoku.h"
-#include <random>
 #include <QPixmap>
 #include <QDebug>
 
@@ -14,9 +13,10 @@ ScalianSudoku::ScalianSudoku(QWidget *parent)
 
     ui->FrameCells->setVisible(false);
 
-    //ui->LogoScalian->setPixmap(QPixmap(":/logo/scalian"));
-    //ui->LogoCampus->setPixmap(QPixmap(":/logo/campus42"));
-    //ui->LogoCampus->setScaledContents(true);
+    ui->LogoScalian->setPixmap(QPixmap(":/logo/scalian"));
+    ui->Logo42->setPixmap(QPixmap(":/logo/campus42"));
+    ui->Logo42->setScaledContents(true);
+    ui->LogoScalian->setScaledContents(true);
 
     int itemIdx = 0;
     uint rows = ui->Board->count();
@@ -53,9 +53,12 @@ ScalianSudoku::ScalianSudoku(QWidget *parent)
     connect(ui->Accept, &QPushButton::clicked, this, &ScalianSudoku::onAccept);
     connect(ui->Cancel, &QPushButton::clicked, this, &ScalianSudoku::onCancel);
     connect(ui->Delete, &QPushButton::clicked, this, &ScalianSudoku::onDelete);
+    connect(ui->RandomValues, &QPushButton::clicked, this, &ScalianSudoku::onRandomValues);
 
     // Fill the board with null values
     setEmptyBoard();
+    // Set bg colors
+    setAllCellBg();
 }
 
 void ScalianSudoku::cleanSudoku()
@@ -91,6 +94,12 @@ void ScalianSudoku::setCell(uint rowId, uint colId, uint value, QColor color)
         cell.value()->setStyleSheet(QString("QLabel { color : rgb(%1,%2,%3); background-color : rgb(%4,%5,%6); }")
                                         .arg(color.red()).arg(color.green()).arg(color.blue())
                                         .arg(lightBlue.red()).arg(lightBlue.green()).arg(lightBlue.blue()));
+        if (checkDuplicates(rowId, colId, value)) {
+            // If duplicates found, set the cell with red background
+            cell.value()->setStyleSheet(QString("QLabel { color : rgb(%1,%2,%3); background-color : rgb(%4,%5,%6); }")
+                                            .arg(darkRed.red()).arg(darkRed.green()).arg(darkRed.blue())
+                                            .arg(mediumRed.red()).arg(mediumRed.green()).arg(mediumRed.blue()));
+        }
     }
     sudokuBoard[rowId][colId] = value;
 }
@@ -121,6 +130,31 @@ ScalianSudoku::~ScalianSudoku()
 
 void ScalianSudoku::onDoubleClickInCell(uint rowId, uint colId)
 {
+    setAllCellBg();
+
+    auto cell = getCell(rowId, colId);
+
+    // Set background color for cells in the same row and column
+    for (uint i = 0; i < 9; ++i) {
+        auto cellInRow = getCell(rowId, i);
+        auto cellInCol = getCell(i, colId);
+
+        if (cellInRow) {
+            cellInRow.value()->setStyleSheet(QString("background-color : rgb(%1,%2,%3); }")
+                                                 .arg(mediumLightBlue.red()).arg(mediumLightBlue.green()).arg(mediumLightBlue.blue()));
+        }
+
+        if (cellInCol && i != rowId) {
+            cellInCol.value()->setStyleSheet(QString("background-color : rgb(%1,%2,%3); }")
+                                                 .arg(mediumLightBlue.red()).arg(mediumLightBlue.green()).arg(mediumLightBlue.blue()));
+        }
+    }
+
+    if (cell) {
+        cell.value()->setStyleSheet(QString("background-color : rgb(%1,%2,%3); }")
+                                        .arg(mediumBlue.red()).arg(mediumBlue.green()).arg(mediumBlue.blue()));
+    }
+
     ui->FrameCells->setProperty("row", rowId);
     ui->FrameCells->setProperty("col", colId);
 
@@ -128,6 +162,10 @@ void ScalianSudoku::onDoubleClickInCell(uint rowId, uint colId)
     ui->ColTag->setText(QString::number(colId+1));
     ui->FrameCells->setVisible(true);
     ui->FrameControls->setVisible(false);
+}
+
+void ScalianSudoku::onRandomValues(){
+    setInitialSudoku();
 }
 
 std::optional<QLabel*> ScalianSudoku::getCell(uint rowId, uint colId)
@@ -203,18 +241,7 @@ void ScalianSudoku::onCleanSudoku()
 
 void ScalianSudoku::onSolveSudoku()
 {
-
     solveSudoku();
-    bool result = checkSudoku();
-
-    if(result)
-    {
-        writeResult("CORRECTO", QColor(Qt::GlobalColor::green));
-    }
-    else
-    {
-        writeResult("INCORRECTO", QColor(Qt::GlobalColor::yellow));
-    }
 }
 
 void ScalianSudoku::onAccept()
@@ -223,7 +250,20 @@ void ScalianSudoku::onAccept()
     uint col = ui->FrameCells->property("col").value<uint>();
     uint value = ui->CellValue->value();
 
-    setCell(row, col, value, darkBlue);
+    auto cell = getCell(row, col);
+
+    if (!checkDuplicates(row, col, value)) {
+        // If no duplicates, set the cell with default colors
+        cell.value()->setStyleSheet(QString("background-color : rgb(%4,%5,%6); }")
+                                        .arg(lightBlue.red()).arg(lightBlue.green()).arg(lightBlue.blue()));
+        setCell(row, col, value, darkBlue);
+    } else {
+        // If duplicates found, set the cell with red background
+        cell.value()->setStyleSheet(QString("background-color : rgb(%4,%5,%6); }")
+                                        .arg(mediumRed.red()).arg(mediumRed.green()).arg(mediumRed.blue()));
+        setCell(row, col, value, QColor(Qt::GlobalColor::red));
+    }
+
 }
 
 void ScalianSudoku::onCancel()
