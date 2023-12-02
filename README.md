@@ -63,10 +63,10 @@ To enhance the user experience, the application includes the following UI improv
 - **Dynamic Background Colors:** Cells are visually categorized based on their status (empty, filled, error) to improve clarity.
 
 ## <span style="color:#90B1FE">License</span>
-This project was developed as part of a code challenge presented by [Scalian Spain](https://www.scalian-spain.es/) and [42 Malaga Fundacion Telefonica](https://www.42malaga.com/). The intellectual property rights of the challenge specifications and related materials belong to Scalian and 42 Malaga Fundacion Telefonica.
+This project was developed as part of a code challenge presented by [Scalian Spain](https://www.scalian-spain.es/) and [42 Málaga Fundación Telefónica](https://www.42malaga.com/). The intellectual property rights of the challenge specifications and related materials belong to Scalian and 42 Málaga Fundación Telefónica.
 
 ## <span style="color:#90B1FE">Acknowledgments</span>
-I would like say thank you to Scalian and 42 Malaga Fundacion Telefonica for giving me the opportunity to participate in this engaging code challenge. The experience has been valuable, and I appreciate the chance to showcase my skills.
+I would like say thank you to Scalian and 42 Málaga Fundación Telefónica for giving me the opportunity to participate in this engaging code challenge. The experience has been valuable, and I appreciate the chance to showcase my skills.
 
 Despite me being new to the QT framework, the learning experience was enjoyable, and I am grateful for the chance to explore and work with a new technology.
 
